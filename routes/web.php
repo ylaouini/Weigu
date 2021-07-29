@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\MagicLinkController;
+use App\Http\Controllers\PassPhraseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +22,9 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::get('/login/confirm',[PassPhraseController::class,'show'])->name('login.confirm');
+Route::post('/login/confirm',[PassPhraseController::class,'store'])->name('login.confirmation');
+Route::get('/login/magic/{user}',[MagicLinkController::class,'confirm'])->name('login.magiclink');
+
+
