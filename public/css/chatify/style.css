@@ -312,6 +312,9 @@ body {
 .messenger-infoView-btns .delete-conversation {
   display: none;
 }
+.messenger-infoView-btns .block-user {
+    display: none;
+}
 .message-card {
   display: inline-flex;
   margin: 2px 15px;

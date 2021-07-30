@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/exprimer');
 });
 
 //Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -34,6 +34,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::resource('change-password', \App\Http\Controllers\PasswordController::class);
     Route::view('/preferences', 'preferences')->name('dashboard.settings.preferences');
+
+    //Chatify
+
+    Route::post('chat/blockUser',[\App\Http\Controllers\vendor\Chatify\MessagesController::class,'blockUser'])->name('block-user');
 });
 
 

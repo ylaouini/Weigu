@@ -65,4 +65,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(BroadcastMessage::class);
     }
+
+    public function BlockedUser()
+    {
+        return $this->hasMany(BlockedUser::class);
+    }
 }

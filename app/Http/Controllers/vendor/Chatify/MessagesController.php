@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\vendor\Chatify;
 
+use App\Models\BlockedUser;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 use App\Models\ChMessage as Message;
 use App\Models\ChFavorite as Favorite;
@@ -413,6 +415,21 @@ class MessagesController extends Controller
         // send the response
         return Response::json([
             'deleted' => $delete ? 1 : 0,
+        ], 200);
+    }
+
+    public function blockUser(Request $request)
+    {
+        Log::debug('im here');
+        Log::debug('id: '. $request['id']);
+        $blocked = BlockedUser::create([
+            'user_id' => \auth()->id(),
+            'user_blocked_id' => $request['id']
+        ]);
+
+        // send the response
+        return Response::json([
+            'blocked' => $blocked ? 1 : 0,
         ], 200);
     }
 
