@@ -44,6 +44,7 @@ class AdvisePassPhrase extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+            ->from('noreplay@weigu-app.com')
             ->subject('Votre code de connexion pour ' . config('app.name'))
             ->line('Voici votre mot de passe de connexion qui est valable pour les 15 prochaines minutes')
             ->line($this->passphrase)
