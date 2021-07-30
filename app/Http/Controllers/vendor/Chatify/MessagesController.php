@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\vendor\Chatify;
 
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Response;
@@ -58,6 +59,8 @@ class MessagesController extends Controller
 
         // prepare id
         return view('Chatify::pages.app', [
+            'countUnseenMessages'=> \App\Models\ChMessage::where('to_id', Auth::user()->id)->where('seen', 0)->count(),
+            'totalNotification' => Notification::where('notifiable_id',\auth()->id())->count(),
             'id' => ($id == null) ? 0 : $route . '_' . $id,
             'route' => $route,
             'messengerColor' => Auth::user()->messenger_color,
