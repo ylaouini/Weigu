@@ -4,7 +4,13 @@
 <div class="messenger-infoView-btns">
 {{--     <a href="#" class="default"><i class="fas fa-camera"></i> default</a>--}}
     <a href="#" class="danger delete-conversation"><i class="fas fa-trash-alt"></i> Supprimer Conversation</a>
-    <a href="#" class="danger block-user"><i class="fas fa-trash-alt"></i> Bloquer utilisateur</a>
+{{--    <a href="#" class="danger block-user"><i class="fas fa-trash-alt"></i> Bloquer utilisateur</a>--}}
+</div>
+
+<div class="messenger-infoView-btns">
+    {{--     <a href="#" class="default"><i class="fas fa-camera"></i> default</a>--}}
+{{--    <a href="#" class="danger delete-conversation"><i class="fas fa-trash-alt"></i> Supprimer Conversation</a>--}}
+    <a href="#" class="danger block-user"></i> Bloquer utilisateur</a>
 </div>
 
 
