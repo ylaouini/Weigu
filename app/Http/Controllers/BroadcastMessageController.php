@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\TotalQuestionChanged;
 use App\Models\BroadcastMessage;
 use Chatify\Facades\ChatifyMessenger as Chatify;
 use http\Client\Curl\User;
@@ -32,8 +33,8 @@ class BroadcastMessageController extends Controller
             }
         }
 
-        //$totalQuestions = BroadcastMessage::all()->count();
-       // event(new TotalQuestionChanged($totalQuestions,$message->message,\auth()->user()->name));
+        $totalQuestions = BroadcastMessage::all()->count();
+        event(new TotalQuestionChanged($totalQuestions,$message->message,\auth()->user()->name));
 
         app(scheduledMessage::class);
 
