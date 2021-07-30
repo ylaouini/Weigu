@@ -24,7 +24,7 @@ class ScheduledMessage extends Controller
         $messages = $this->getActiveMessages();
         $everyMinutes = 2;
 
-        foreach($messages as $message) {
+        foreach ($messages as $message) {
             $twelveHoursPassed = $this->sendNow($message, $everyMinutes);
             $gotReply = $this->gotReplyYet($message);
 
@@ -32,9 +32,9 @@ class ScheduledMessage extends Controller
 
             if ($canSendMessage) {
 
-                $receivers = $this->getRandomUsers($message->user_id,$message->id);
+                $receivers = $this->getRandomUsers($message->user_id, $message->id);
 
-                if (count($receivers) == 0){
+                if (count($receivers) == 0) {
                     return;
                 }
 
@@ -42,7 +42,7 @@ class ScheduledMessage extends Controller
 
                 foreach ($receivers as $receiver) {
                     $this->sendMessage($message, $receiver);
-                    Mail::to($receiver)->send(new ScheduledBroadcastMessage($receiver, $sender->name, $message));
+//                    Mail::to($receiver)->send(new ScheduledBroadcastMessage($receiver, $sender->name, $message));
                 }
             } elseif ($gotReply) {
                 /**
@@ -79,11 +79,11 @@ class ScheduledMessage extends Controller
         $minutes += $since_start->h * 60;
         $minutes += $since_start->i;
 
-        if ($minutes == 0){
+        if ($minutes == 0) {
             return false;
         }
 
-        if (!($minutes % $everyXminutes)){
+        if (!($minutes % $everyXminutes)) {
             return true;
         }
 
@@ -94,10 +94,17 @@ class ScheduledMessage extends Controller
      * get random number of users so we can send em our Podcast_message
      */
 
-    private function getRandomUsers($userSenderID,$idMessage): array
+    private function getRandomUsers($userSenderID, $idMessage): array
     {
+        /** user blocked */
+
+        $usersender = User::find($userSenderID);
+        foreach ($usersender->BlockedUser()->get() as $blockedUser) {
+            $usersblocked [] = User::find($blockedUser->user_blocked_id);
+        }
+
         /** user already have message */
-        $usersAlreadyHaveMessage =[];
+        $usersAlreadyHaveMessage = [];
 
         /** number of users we want to mail */
         $usersNum = 2;
@@ -106,7 +113,7 @@ class ScheduledMessage extends Controller
         /** array of randomly selected users */
         $users = [];
 
-        foreach (ChMessage::where(['from_id' => $userSenderID, 'broadcast_message_id' => $idMessage])->get() as $message){
+        foreach (ChMessage::where(['from_id' => $userSenderID, 'broadcast_message_id' => $idMessage])->get() as $message) {
             $usersAlreadyHaveMessage [] = User::find($message->to_id);
         }
 
@@ -119,14 +126,16 @@ class ScheduledMessage extends Controller
             $user = User::inRandomOrder()->first();
 
 
-            if (User::all()->count() - count($usersAlreadyHaveMessage) -1 < $usersNum){
+            if (User::all()->count() - count($usersAlreadyHaveMessage) - 1 < $usersNum) {
                 $usersNum--;
             }
             /** check if rules applies */
-            if (!in_array($user,$usersAlreadyHaveMessage)){
-                if (!in_array($user, $users) && $user->id != $userSenderID) {
-                    $users[] = $user;
-                    $i++;
+            if (!in_array($user, $blockedUser)) {
+                if (!in_array($user, $usersAlreadyHaveMessage)) {
+                    if (!in_array($user, $users) && $user->id != $userSenderID) {
+                        $users[] = $user;
+                        $i++;
+                    }
                 }
             }
         }
@@ -169,7 +178,7 @@ class ScheduledMessage extends Controller
 
     private function gotReplyYet(BroadcastMessage $message): bool
     {
-        $messages =ChMessage::where(['broadcast_message_id' => $message->id])->get();
+        $messages = ChMessage::where(['broadcast_message_id' => $message->id])->get();
 
         foreach ($messages as $message) {
             $sender = $message->from_id;
