@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Events\TotalQuestionChanged;
 use App\Models\BroadcastMessage;
+use App\Models\User;
 use Chatify\Facades\ChatifyMessenger as Chatify;
-use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +21,7 @@ class BroadcastMessageController extends Controller
         $message->status = 1;
 
         $isSaved = $message->save();
-        if ($isSaved){
+        if ($isSaved) {
 
             $receivers = $this->getRandomUsers($message->user_id);
 
@@ -29,12 +29,12 @@ class BroadcastMessageController extends Controller
 
             foreach ($receivers as $receiver) {
                 $this->sendMessage($message, $receiver);
-                //Mail::to($receiver)->send(new scheduledMessageMail($receiver, $sender->name, $message));
+//                Mail::to($receiver)->send(new scheduledMessageMail($receiver, $sender->name, $message));
             }
         }
 
         $totalQuestions = BroadcastMessage::all()->count();
-        event(new TotalQuestionChanged($totalQuestions,$message->message,\auth()->user()->name));
+        event(new TotalQuestionChanged($totalQuestions, $message->message, \auth()->user()->name));
 
         app(scheduledMessage::class);
 
@@ -43,12 +43,23 @@ class BroadcastMessageController extends Controller
 
     private function getRandomUsers($id): array
     {
+        /** user blocked */
+
+        foreach (auth()->user()->BlockedUser()->get() as $blockedUser){
+            $usersblocked [] = User::find($blockedUser->user_blocked_id) ;
+        }
+
         /** number of users we want to mail */
-        $usersNum = 2;
+        $usersNum = 15;
+
+        if (User::all()->count() < $usersNum){
+            $usersNum = User::all()->count()-1;
+        }
         /** select random users */
         $i = 0;
         /** array of randomly selected users */
         $users = [];
+
 
         while ($i < $usersNum) {
             /**
@@ -57,10 +68,16 @@ class BroadcastMessageController extends Controller
              */
             $user = User::inRandomOrder()->first();
 
+            if (User::all()->count() - count($usersblocked) -1 < $usersNum){
+                $usersNum--;
+            }
+
             /** check if rules applies */
-            if (!in_array($user, $users) && $user->id != $id) {
-                $users[] = $user;
-                $i++;
+            if (!in_array($user, $usersblocked)) {
+                if (!in_array($user, $users) && $user->id != $id) {
+                    $users[] = $user;
+                    $i++;
+                }
             }
         }
 

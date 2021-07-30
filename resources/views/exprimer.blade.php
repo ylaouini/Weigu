@@ -64,6 +64,7 @@
                             <img src="{{asset('/storage/avatars/'.auth()->user()->avatar)}}" alt="">
                         </div>
                     </div>
+
                 </div>
                 <div id="notif" class="span3 wow fadeInRight" data-wow-duration="2s">
                     <div class="notification-section mt-4 pt-2 pb-2 pl-4 pr-4">
@@ -86,11 +87,12 @@
             <img src="{{ URL::asset('images/gifs/letter.gif') }}" alt="">
         </div>
         <div class="bottle d-flex flex-column hideit page-middle pt-3">
-            <p>Steve, ton message a désormais été envoyé,<br>Tu seras notifié dès que obtiendras tes premières réponses.
+            <p>{{auth()->user()->name}}, ton message a désormais été envoyé,<br>Tu seras notifié dès que obtiendras tes premières réponses.
             </p>
             <img src="{{ URL::asset('images/gifs/letterbottle.gif') }}" alt="">
         </div>
     </div>
+
 </div>
 @include('partials._navbar')
 </body>
