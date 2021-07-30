@@ -52,17 +52,17 @@ class MessagesController extends Controller
      * @param int $id
      * @return void
      */
-    public function index( $id = null)
+    public function index($id = null)
     {
-        $routeName= FacadesRequest::route()->getName();
+        $routeName = FacadesRequest::route()->getName();
         $route = (in_array($routeName, ['user', config('chatify.routes.prefix')]))
             ? 'user'
             : $routeName;
 
         // prepare id
         return view('Chatify::pages.app', [
-            'countUnseenMessages'=> \App\Models\ChMessage::where('to_id', Auth::user()->id)->where('seen', 0)->count(),
-            'totalNotification' => Notification::where('notifiable_id',\auth()->id())->count(),
+            'countUnseenMessages' => \App\Models\ChMessage::where('to_id', Auth::user()->id)->where('seen', 0)->count(),
+            'totalNotification' => Notification::where('notifiable_id', \auth()->id())->count(),
             'id' => ($id == null) ? 0 : $route . '_' . $id,
             'route' => $route,
             'messengerColor' => Auth::user()->messenger_color,
@@ -132,8 +132,8 @@ class MessagesController extends Controller
         if ($request->hasFile('file')) {
             // allowed extensions
             $allowed_images = Chatify::getAllowedImages();
-            $allowed_files  = Chatify::getAllowedFiles();
-            $allowed        = array_merge($allowed_images, $allowed_files);
+            $allowed_files = Chatify::getAllowedFiles();
+            $allowed = array_merge($allowed_images, $allowed_files);
 
             $file = $request->file('file');
             // if size less than 150MB
@@ -249,29 +249,36 @@ class MessagesController extends Controller
     public function getContacts(Request $request)
     {
         // get all users that received/sent message from/to [Auth user]
-        $users = Message::join('users',  function ($join) {
+        $users = Message::join('users', function ($join) {
             $join->on('ch_messages.from_id', '=', 'users.id')
                 ->orOn('ch_messages.to_id', '=', 'users.id');
         })
-        ->where(function ($q) {
-            $q->where('ch_messages.from_id', Auth::user()->id)
-              ->orWhere('ch_messages.to_id', Auth::user()->id);
-        })
-        ->orderBy('ch_messages.created_at', 'desc')
-        ->get()
-        ->unique('id');
+            ->where(function ($q) {
+                $q->where('ch_messages.from_id', Auth::user()->id)
+                    ->orWhere('ch_messages.to_id', Auth::user()->id);
+            })
+            ->orderBy('ch_messages.created_at', 'desc')
+            ->get()
+            ->unique('id');
+
+
 
         $contacts = '<p class="message-hint center-el"><span>Your contact list is empty</span></p>';
-        $users = $users->where('id','!=',Auth::user()->id);
+        $users = $users->where('id', '!=', Auth::user()->id);
+
+        foreach ( Auth::user()->BlockedUser()->get() as $blockedUser){
+            $users = $users->where('id', '!=', $blockedUser->user_blocked_id);
+        }
+
         if ($users->count() > 0) {
             // fetch contacts
             $contacts = '';
             foreach ($users as $user) {
-                if ($user->id != Auth::user()->id) {
-                    // Get user data
-                    $userCollection = User::where('id', $user->id)->first();
-                    $contacts .= Chatify::getContactItem($request['messenger_id'], $userCollection);
-                }
+                    if ($user->id != Auth::user()->id) {
+                        // Get user data
+                        $userCollection = User::where('id', $user->id)->first();
+                        $contacts .= Chatify::getContactItem($request['messenger_id'], $userCollection);
+                    }
             }
         }
 
@@ -421,7 +428,7 @@ class MessagesController extends Controller
     public function blockUser(Request $request)
     {
         Log::debug('im here');
-        Log::debug('id: '. $request['id']);
+        Log::debug('id: ' . $request['id']);
         $blocked = BlockedUser::create([
             'user_id' => \auth()->id(),
             'user_blocked_id' => $request['id']
