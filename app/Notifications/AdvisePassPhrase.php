@@ -48,7 +48,7 @@ class AdvisePassPhrase extends Notification
             ->subject('Votre code de connexion pour ' . config('app.name'))
             ->line('Voici votre mot de passe de connexion qui est valable pour les 15 prochaines minutes')
             ->line($this->passphrase)
-            ->line('Ou cliquez sur le bouton pour accéder au site (s\'ouvre dans une nouvelle fenêtre)')
+            ->line('Vous pouvez aussi cliquer sur le bouton ci-dessous pour accéder au site')
             ->action('Confirm', URL::temporarySignedRoute(
                 'login.magiclink',
                 now()->addMinutes(15),
