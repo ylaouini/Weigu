@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Events\TotalUserChanged;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
@@ -43,6 +44,9 @@ class CreateNewUser implements CreatesNewUsers
         $user->update([
             'name' => 'Anonyme#'.(1000000-$user->id),
         ]);
+
+        $totalUsers = User::all()->count();
+        event(new TotalUserChanged($totalUsers,'Anonyme#'.(1000000-$user->id)));
 
         return $user;
     }
