@@ -190,7 +190,7 @@
             targetDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
         setDate(targetDate);
-        setYears(35) // set the precedent years in dropdown
+        setYears(50) // set the precedent years in dropdown
 
         $("#select-month").change(function () {
             var monthIndex = $("#select-month").val();
@@ -200,7 +200,7 @@
         function setDate(date) {
             setDays(date.getMonth());
             $("#select-day").val(date.getDate());
-            $("#select-month").val(date.getMonth());
+            $("#select-month").val(date.getMonth()+1);
             $("#select-year").val(date.getFullYear());
         }
 
@@ -227,7 +227,7 @@
 
         function setYears(val) {
             var year = today.getFullYear();
-            for (var i = 0; i < val; i++) {
+            for (var i = 13; i < val; i++) {
                 $('#select-year')
                     .append($("<option></option>")
                         .attr("value", year - i)
