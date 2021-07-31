@@ -10,7 +10,8 @@
     <link href="{{ asset('css/weigu.css') }}" rel="stylesheet">
     <link href="{{ asset('css/datepicker.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <style type="text/css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <style type="text/css">
         ::-webkit-scrollbar {
             width: 0px !important;
             position: static;
