@@ -20,7 +20,7 @@
                         <input type="hidden" value="Anonyme" name="name" />
 
                         <div class="group">
-                            <input type="email" name="email" :value="old('email')" class="my-inputs" required autocomplete="email">
+                            <input type="text" name="email" :value="old('email')" class="my-inputs" required autocomplete="email">
                             <span class="highlight"></span>
                             <span class="bar"></span>
                             <label>Courriel</label>
@@ -134,7 +134,7 @@
                             @csrf
                             <div class="group">
 {{--                                <input type="text" name="email" class="my-inputs" id="emailInput" required>--}}
-                                <input class="my-inputs" id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus>
+                                <input class="my-inputs" id="email" class="block mt-1 w-full" type="text" name="email" :value="old('email')" required autofocus>
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Email</label>
