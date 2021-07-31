@@ -21,6 +21,8 @@ class HomeController extends Controller
 
     public function exprimer()
     {
+        session()->flash('message', 'Parcel successfully add.');
+        session()->flash('notyfType', 'success');
         return view('exprimer', [
             'totalUsers' => User::all()->count(),
             'totalResponses' => BroadcastMessage::where('status','0')->count(),
