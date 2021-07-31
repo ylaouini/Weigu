@@ -42,7 +42,7 @@
     Pusher.logToConsole = true;
 
     //var pusher = new Pusher('610ae87cdd570ec71c9c', {
-    var pusher = new Pusher('67f29f74b854da3938e2', {
+    var pusher = new Pusher('610ae87cdd570ec71c9c', {
         cluster: 'eu'
     });
     var current_user_id = {{ Auth::id() }};
@@ -51,6 +51,27 @@
 
     channel.bind('TotalUserChanged', function(data) {
         document.getElementById('totalUsers').innerHTML = JSON.parse(data.totalUsers);
+
+        var message ='Nouvelle inscription de: '+ data.userName;
+        var type = 'success';
+        // warning,danger,success,default
+        var duration = 9500;
+        var ripple = true;
+        var dismissible = true;
+        // var positionX = 'right';
+        // var positionY = 'top';
+        window.notyf.open({
+            type,
+            message,
+            duration,
+            ripple,
+            dismissible,
+            position: {
+                x: 'right',
+                y: 'top',
+            },
+        });
+
     });
 
     channel.bind('TotalResponsesChanged', function(data) {
@@ -61,7 +82,27 @@
 
         document.getElementById('totalQuestions').innerHTML = JSON.parse(data.totalQuestions);
         // document.getElementById('messageWow').innerHTML = data.message;
-        document.getElementById('userWow').innerHTML = data.name;
+        // document.getElementById('userWow').innerHTML = data.name;
+
+        var message ='Q: '+ data.message;
+        var type = 'success';
+        // warning,danger,success,default
+        var duration = 9500;
+        var ripple = true;
+        var dismissible = true;
+        // var positionX = 'right';
+        // var positionY = 'top';
+        window.notyf.open({
+            type,
+            message,
+            duration,
+            ripple,
+            dismissible,
+            position: {
+                x: 'right',
+                y: 'top',
+            },
+        });
     });
 
     var channel = pusher.subscribe('user-{{ Auth::id() }}');
@@ -69,5 +110,7 @@
             document.getElementById('notification').innerHTML = JSON.parse(data.totalNotifications);
             document.getElementById('notificationJavascript').classList.remove('hideit');
             document.getElementById('notificationServer').classList.add('hideit');
+
+
     });
 </script>
