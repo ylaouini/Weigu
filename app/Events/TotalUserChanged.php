@@ -14,16 +14,17 @@ class TotalUserChanged implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $totalUsers;
+    public $totalUsers,$userName;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($totalUsers)
+    public function __construct($totalUsers,$userName)
     {
         $this->totalUsers = $totalUsers;
+        $this->userName = $userName;
     }
 
     /**
