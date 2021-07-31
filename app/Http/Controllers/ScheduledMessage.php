@@ -42,7 +42,10 @@ class ScheduledMessage extends Controller
 
                 foreach ($receivers as $receiver) {
                     $this->sendMessage($message, $receiver);
-//                    Mail::to($receiver)->send(new ScheduledBroadcastMessage($receiver, $sender->name, $message));
+                    if ($receiver->notify_me == 1){
+                        Mail::to($receiver)->send(new ScheduledBroadcastMessage($receiver, $sender->name, $message));
+                    }
+
                 }
             } elseif ($gotReply) {
                 /**
