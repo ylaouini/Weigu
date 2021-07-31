@@ -28052,7 +28052,7 @@ img.sharelove {
     }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 767.90px) {
     .send_it.page-middle {
         height: 70vh;
     }
@@ -29885,7 +29885,7 @@ input.myradio {
     }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 767.90px) {
     .cont.s--signup .sub-cont {
         transform: translate3d(-100%, 0, 0);
     }
