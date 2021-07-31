@@ -12,6 +12,7 @@
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 </head>
 
 <body class="d-flex flex-column justify-content-between josefin josefin">
@@ -61,26 +62,12 @@
                     <div class="exprm-write dspl fill-the-rest mt-2 mb-4">
                         <div class="writedmessage">
                             <textarea id="story" name="message" rows="5" cols="33" placeholder="Pose une question" onkeyup="plumtosend()"></textarea>
-                            <img src="{{asset('/storage/avatars/'.auth()->user()->avatar)}}" alt="">
+                            <img src="{{ asset('/storage/'.config('chatify.user_avatar.folder').'/'.auth()->user()->avatar) }}" alt="">
                         </div>
                     </div>
 
                 </div>
-                <div id="notif" class="span3 wow fadeInRight" data-wow-duration="2s">
-                    <div class="notification-section mt-4 pt-2 pb-2 pl-4 pr-4">
-                        <img src="https://randomuser.me/api/portraits/men/14.jpg" alt="">
-                        <div class="notification-content">
-                            <div class="notification-sender">
-                                <h5>Nicolas Martin</h5>
-                                <p class="time">1s</p>
-                            </div>
-                            <p class="notification">Hello la coummun, j'aurais utiliser</p>
-                        </div>
-                    </div>
-                    <div class="notiftime">
-                        <div></div>
-                    </div>
-                </div>
+
             </div>
         </div>
         <div class="send_it hideit d-flex page-middle pt-3">
@@ -97,7 +84,20 @@
 @include('partials._navbar')
 </body>
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 <script>
+    // Create an instance of Notyf
+    var notyf = new Notyf();
+
+
+    // // Display an error notification
+    // notyf.error('You must fill out the form before moving forward');
+    //
+    // // Display a success notification
+    // notyf.success('Your changes have been successfully saved!');
+
     function plumtosend() {
         if ($("#story").val() != "") {
             $(".cancel").addClass("toblue");
@@ -113,18 +113,6 @@
         $(".tab-bar.expr .tabbi2").removeClass("hideit");
     });
 
-    function notif() {
-        setTimeout(function() {
-            $("#notif").removeClass("fadeInRight");
-            $("#notif").addClass("fadeOutRight");
-        }, 3200);
-        new WOW().init();
-        $("#notif").removeClass("fadeOutRight");
-        setTimeout(function() {
-            $("#notif").addClass("hideit");
-        }, 3000);
-    }
-    notif();
 
     function paperplane() {
         let msgData = new FormData();
@@ -151,28 +139,50 @@
 
     }
 
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
-
-    //var pusher = new Pusher('610ae87cdd570ec71c9c', {
-    var pusher = new Pusher('610ae87cdd570ec71c9c', {
-        cluster: 'eu'
-    });
-
-    var channel = pusher.subscribe('count-changed');
-
-    channel.bind('TotalUserChanged', function(data) {
-        document.getElementById('totalUsers').innerHTML = JSON.parse(data.totalUsers);
-    });
-
-    channel.bind('TotalResponsesChanged', function(data) {
-        document.getElementById('totalResponses').innerHTML = JSON.parse(data.totalResponses);
-    });
-
-    channel.bind('TotalQuestionChanged', function(data) {
-        document.getElementById('totalQuestions').innerHTML = JSON.parse(data.totalQuestions);
-    });
+    // // Enable pusher logging - don't include this in production
+    // Pusher.logToConsole = true;
+    //
+    // //var pusher = new Pusher('610ae87cdd570ec71c9c', {
+    // var pusher = new Pusher('610ae87cdd570ec71c9c', {
+    //     cluster: 'eu'
+    // });
+    //
+    // var channel = pusher.subscribe('count-changed');
+    //
+    // channel.bind('TotalUserChanged', function(data) {
+    //     document.getElementById('totalUsers').innerHTML = JSON.parse(data.totalUsers);
+    // });
+    //
+    // channel.bind('TotalResponsesChanged', function(data) {
+    //     document.getElementById('totalResponses').innerHTML = JSON.parse(data.totalResponses);
+    // });
+    //
+    // channel.bind('TotalQuestionChanged', function(data) {
+    //     document.getElementById('totalQuestions').innerHTML = JSON.parse(data.totalQuestions);
+    // });
 </script>
+{{--@if (session()->has('message'))--}}
+{{--    <script type="text/javascript">--}}
 
+{{--        document.addEventListener("DOMContentLoaded", function () {--}}
+
+{{--            var message = '{{ session('message') }}';--}}
+{{--            var type = '{{ session('notyfType') }}';--}}
+{{--            // warning,danger,success,default--}}
+{{--            var duration = 9500;--}}
+{{--            var ripple = true;--}}
+{{--            var dismissible = true;--}}
+{{--            // var positionX = document.querySelector("input[name=\"notyf-position-x\"]:checked").value;--}}
+{{--            // var positionY = document.querySelector("input[name=\"notyf-position-y\"]:checked").value;--}}
+{{--            window.notyf.open({--}}
+{{--                type,--}}
+{{--                message,--}}
+{{--                duration,--}}
+{{--                ripple,--}}
+{{--                dismissible,--}}
+{{--            });--}}
+{{--        });--}}
+{{--    </script>--}}
+{{--@endif--}}
 
 </html>
