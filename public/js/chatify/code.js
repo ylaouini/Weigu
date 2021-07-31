@@ -339,6 +339,7 @@ function IDinfo(id, type) {
         );
         // Show shared and actions
         $(".messenger-infoView-btns .delete-conversation").show();
+        $(".messenger-infoView-btns .block-user").show();
         $(".messenger-infoView-shared").show();
         // fetch messages
         fetchMessages(id, type);
@@ -867,6 +868,55 @@ function messengerSearch(input) {
 
 /**
  *-------------------------------------------------------------
+ * Block user
+ *-------------------------------------------------------------
+ */
+function blockUser(id) {
+    $.ajax({
+        url: url + "/blockUser",
+        method: "POST",
+        data: { _token: access_token, id: id },
+        dataType: "JSON",
+        beforeSend: () => {
+            // hide delete modal
+            app_modal({
+                show: false,
+                name: "block",
+            });
+            // Show waiting alert modal
+            app_modal({
+                show: true,
+                name: "alert",
+                buttons: false,
+                body: loadingSVG("32px", null, "margin:auto"),
+            });
+        },
+        success: (data) => {
+            // delete contact from the list
+            $(".listOfContacts")
+                .find(".messenger-list-item[data-contact=" + id + "]")
+                .remove();
+            // refresh info
+            IDinfo(id, messenger.split("_")[0]);
+
+            data.blocked ? "" : console.error("Error occured!");
+
+            // Hide waiting alert modal
+            app_modal({
+                show: false,
+                name: "alert",
+                buttons: true,
+                body: "",
+            });
+        },
+        error: () => {
+            console.error("Server error, check your response");
+        },
+    });
+}
+
+/**
+ *-------------------------------------------------------------
  * Delete Conversation
  *-------------------------------------------------------------
  */
@@ -1228,6 +1278,13 @@ $(document).ready(function() {
       name: "delete",
     });
   });
+
+  // Block user button
+    $(".messenger-infoView-btns .block-user").on("click", function() {
+        app_modal({
+            name: "block",
+        });
+    });
   // delete modal [delete button]
   $(".app-modal[data-name=delete]")
     .find(".app-modal-footer .delete")
@@ -1247,6 +1304,27 @@ $(document).ready(function() {
         name: "delete",
       });
     });
+
+    // block user modal [block button]
+    $(".app-modal[data-name=block]")
+        .find(".app-modal-footer .block")
+        .on("click", function() {
+            blockUser(messenger.split("_")[1]);
+            // deleteConversation(messenger.split("_")[1]);
+            app_modal({
+                show: false,
+                name: "block",
+            });
+        });
+    // block user modal [cancel button]
+    $(".app-modal[data-name=block]")
+        .find(".app-modal-footer .cancel")
+        .on("click", function() {
+            app_modal({
+                show: false,
+                name: "block",
+            });
+        });
 
   // Settings button action to show settings modal
   $("body").on("click", ".settings-btn", function(e) {

@@ -27,6 +27,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'birth_date',
+        'gender'
     ];
 
     /**
@@ -58,4 +60,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function BroadcastMessage()
+    {
+        return $this->hasMany(BroadcastMessage::class);
+    }
+
+    public function BlockedUser()
+    {
+        return $this->hasMany(BlockedUser::class);
+    }
 }

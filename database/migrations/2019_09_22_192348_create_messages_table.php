@@ -16,6 +16,7 @@ class CreateMessagesTable extends Migration
         Schema::create('ch_messages', function (Blueprint $table) {
             $table->bigInteger('id');
             $table->string('type');
+            $table->bigInteger('broadcast_message_id')->nullable();
             $table->bigInteger('from_id');
             $table->bigInteger('to_id');
             $table->string('body',5000)->nullable();
