@@ -29705,6 +29705,9 @@ input.myradio {
     background-position: center;
     background-size: cover;
 }
+.chat-page{
+    height: 100%;
+}
 span.mail {
     color: #009dff;
 }

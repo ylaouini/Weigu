@@ -1,4 +1,7 @@
 @include('Chatify::layouts.headLinks')
+<div class="d-flex flex-column justify-content-between josefin josefin chat-page">
+
+
     <div class="messenger chatcontainer">
         {{-- ----------------------Users/Groups lists side---------------------- --}}
         <div class="messenger-listView">
@@ -124,6 +127,6 @@
 @include('Chatify::layouts.footerLinks')
 @include('partials._navbar')
 
-
+</div>
 
 
