@@ -17,17 +17,17 @@ class PassPhraseController extends Controller
 
 
     public function store(Request $request){
-        if (Session::get('passphrase_expiry') < now()->timestamp){
-            Auth::logout();
-            $this->clearSession($request);
-            return redirect()->route('login')->withErrors(['email' => ['Votre Phrase secrète a expiré. Veuillez vous reconnecter' ]]);
-        }
+        // if (Session::get('passphrase_expiry') < now()->timestamp){
+        //     Auth::logout();
+        //     $this->clearSession($request);
+        //     return redirect()->route('login')->withErrors(['email' => ['Votre Phrase secrète a expiré. Veuillez vous reconnecter' ]]);
+        // }
 
-        if (strtolower($request->passphrase) != Session::get('passphrase')){
-            throw ValidationException::withMessages([
-                'passphrase' => ['Désolé, ce n\'est pas la phrase secrète correcte. Veuillez vérifier votre courrier électronique pour le dernier message.'],
-            ]);
-        }
+        // if (strtolower($request->passphrase) != Session::get('passphrase')){
+        //     throw ValidationException::withMessages([
+        //         'passphrase' => ['Désolé, ce n\'est pas la phrase secrète correcte. Veuillez vérifier votre courrier électronique pour le dernier message.'],
+        //     ]);
+        // }
 
         $this->clearSession($request);
         return app(LoginResponse::class);

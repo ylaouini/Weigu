@@ -24,7 +24,7 @@
     <!-- Fixed navbar -->
     <nav class="navbar navbar-expand-md justify-content-between">
         <div class="mobilenav">
-            <a href="https://weigu-app.com" class="app_logo hideitdesktop">
+            <a href="https://weigu-app.com" class="app_logo">
                 <h1>Weigu</h1>
             </a>
             <i class="burger-menu bi bi-list"></i>

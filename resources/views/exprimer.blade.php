@@ -161,28 +161,29 @@
     //     document.getElementById('totalQuestions').innerHTML = JSON.parse(data.totalQuestions);
     // });
 </script>
-{{--@if (session()->has('message'))--}}
-{{--    <script type="text/javascript">--}}
 
-{{--        document.addEventListener("DOMContentLoaded", function () {--}}
+<!-- @if (session()->has('message'))
+    <script type="text/javascript">
 
-{{--            var message = '{{ session('message') }}';--}}
-{{--            var type = '{{ session('notyfType') }}';--}}
-{{--            // warning,danger,success,default--}}
-{{--            var duration = 9500;--}}
-{{--            var ripple = true;--}}
-{{--            var dismissible = true;--}}
-{{--            // var positionX = document.querySelector("input[name=\"notyf-position-x\"]:checked").value;--}}
-{{--            // var positionY = document.querySelector("input[name=\"notyf-position-y\"]:checked").value;--}}
-{{--            window.notyf.open({--}}
-{{--                type,--}}
-{{--                message,--}}
-{{--                duration,--}}
-{{--                ripple,--}}
-{{--                dismissible,--}}
-{{--            });--}}
-{{--        });--}}
-{{--    </script>--}}
-{{--@endif--}}
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var message = '{{ session('message') }}';
+            var type = '{{ session('notyfType') }}';
+            // warning,danger,success,default
+            var duration = 9500;
+            var ripple = true;
+            var dismissible = true;
+            // var positionX = document.querySelector("input[name=\"notyf-position-x\"]:checked").value;
+            // var positionY = document.querySelector("input[name=\"notyf-position-y\"]:checked").value;
+            window.notyf.open({
+                type,
+                message,
+                duration,
+                ripple,
+                dismissible,
+            });
+        });
+    </script>
+@endif -->
 
 </html>

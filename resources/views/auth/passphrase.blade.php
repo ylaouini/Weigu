@@ -15,10 +15,10 @@
 
         <form method="POST" action="{{ route('login.confirmation') }}">
             @csrf
-
             <div>
-                <x-jet-label class="mb-4" value="Lorem lorem lorem" for="passphrase" />
-                <div class="group">
+                <label class="checkemail mb-4 text-center" for="passphrase">Nous vous avons envoyé un lien de confirmation.</label>
+                <label class="pb-4 text-center">Nous avons envoyé un e-mail à <span class="mail">stevykana@yahoo.fr</span><br> Il contient un lien qui finalisera votre inscription.</label>
+                <div class="group mt-4">
                     <input class="my-inputs" class="" type="text" name="passphrase" required autofocus>
                     <span class="highlight"></span>
                     <span class="bar"></span>
