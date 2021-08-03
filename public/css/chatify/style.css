@@ -68,7 +68,7 @@ body {
   margin: 10px;
 }
 .messenger-listView .m-body {
-  margin-top: 141px;
+  margin-top: 79px;
 }
 .messenger-messagingView {
   position: relative;
@@ -205,7 +205,7 @@ body {
   height: 100px;
 }
 .av-m {
-  width: 45px;
+  width: 45px !important;
   height: 45px;
 }
 .av-s {
