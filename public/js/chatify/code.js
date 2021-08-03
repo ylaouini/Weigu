@@ -340,6 +340,7 @@ function IDinfo(id, type) {
         // Show shared and actions
         $(".messenger-infoView-btns .delete-conversation").show();
         $(".messenger-infoView-btns .block-user").show();
+        $(".messenger-infoView-btns .report-user").show();
         $(".messenger-infoView-shared").show();
         // fetch messages
         fetchMessages(id, type);
@@ -868,6 +869,55 @@ function messengerSearch(input) {
 
 /**
  *-------------------------------------------------------------
+ * Report user
+ *-------------------------------------------------------------
+ */
+function reportUser(id) {
+    $.ajax({
+        url: url + "/reportUser",
+        method: "POST",
+        data: { _token: access_token, id: id },
+        dataType: "JSON",
+        beforeSend: () => {
+            // hide delete modal
+            app_modal({
+                show: false,
+                name: "report",
+            });
+            // Show waiting alert modal
+            app_modal({
+                show: true,
+                name: "alert",
+                buttons: false,
+                body: loadingSVG("32px", null, "margin:auto"),
+            });
+        },
+        success: (data) => {
+            // delete contact from the list
+            $(".listOfContacts")
+                .find(".messenger-list-item[data-contact=" + id + "]")
+                .remove();
+            // refresh info
+            IDinfo(id, messenger.split("_")[0]);
+
+            data.reportd ? "" : console.error("Error occured!");
+
+            // Hide waiting alert modal
+            app_modal({
+                show: false,
+                name: "alert",
+                buttons: true,
+                body: "",
+            });
+        },
+        error: () => {
+            console.error("Server error, check your response");
+        },
+    });
+}
+
+/**
+ *-------------------------------------------------------------
  * Block user
  *-------------------------------------------------------------
  */
@@ -1285,6 +1335,12 @@ $(document).ready(function() {
             name: "block",
         });
     });
+    // Report user button
+    $(".messenger-infoView-btns .report-user").on("click", function() {
+        app_modal({
+            name: "report",
+        });
+    });
   // delete modal [delete button]
   $(".app-modal[data-name=delete]")
     .find(".app-modal-footer .delete")
@@ -1323,6 +1379,27 @@ $(document).ready(function() {
             app_modal({
                 show: false,
                 name: "block",
+            });
+        });
+
+    // report user modal [block button]
+    $(".app-modal[data-name=report]")
+        .find(".app-modal-footer .block")
+        .on("click", function() {
+            reportUser(messenger.split("_")[1]);
+            // deleteConversation(messenger.split("_")[1]);
+            app_modal({
+                show: false,
+                name: "block",
+            });
+        });
+    // report user modal [cancel button]
+    $(".app-modal[data-name=report]")
+        .find(".app-modal-footer .cancel")
+        .on("click", function() {
+            app_modal({
+                show: false,
+                name: "report",
             });
         });
 

@@ -1,4 +1,7 @@
 @include('Chatify::layouts.headLinks')
+<div class="d-flex flex-column justify-content-between josefin josefin chat-page">
+
+
     <div class="messenger chatcontainer">
         {{-- ----------------------Users/Groups lists side---------------------- --}}
         <div class="messenger-listView">
@@ -20,7 +23,7 @@
                 {{-- Tabs --}}
                 <div class="messenger-listView-tabs">
                     <a href="#" @if($route == 'user') class="active-tab" @endif data-view="users">
-                        <span class="far fa-user"></span> People</a>
+{{--                        <span class="far fa-user"></span> People</a>--}}
                     {{--                <a href="#" @if($route == 'group') class="active-tab" @endif data-view="groups">--}}
                     {{--                    <span class="fas fa-users"></span> Groups</a>--}}
                 </div>
@@ -124,6 +127,6 @@
 @include('Chatify::layouts.footerLinks')
 @include('partials._navbar')
 
-
+</div>
 
 

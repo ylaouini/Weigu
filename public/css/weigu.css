@@ -27784,6 +27784,9 @@ p {
     width: 100%;
     float: left;
 }
+.towhite{
+    color: #fff!important;
+}
 
 .description {
     font-size: 0.9rem;
@@ -28078,6 +28081,7 @@ img.sharelove {
 
     .description {
         font-size: 0.95rem;
+        margin:25px 0;
     }
 
     body {
@@ -29256,6 +29260,11 @@ p.anonyme {
     text-transform: lowercase;
 }
 
+.img__btn {
+    min-width: 250px;
+}
+
+
 input#messengerSearch {
     border: 1px solid #c5c5c54d !important;
 }
@@ -29495,6 +29504,8 @@ nav.navbar {
     padding: 5px 20px;
     border-radius: 50px!important;
     color: #00b050;
+    text-transform: uppercase;
+    background-color: #fff;
 }
 
 .my-buttons:hover {
@@ -29518,10 +29529,6 @@ nav.navbar {
     border-color: #e5a733;
 }
 
-.rejoindre .pagelogo {
-    font-size: 2.5rem;
-}
-
 .myfieled {
     width: 100%;
     float: left;
@@ -29532,6 +29539,9 @@ nav.navbar {
 }
 
 .rejoindre {
+    margin-top: 20px;
+}
+h5.rejoins {
     margin-bottom: 20px;
 }
 
@@ -29551,6 +29561,7 @@ nav.navbar {
 
 .group-radio {
     width: 100%;
+    margin-bottom: 20px;
 }
 
 input.myradio {
@@ -29561,6 +29572,7 @@ input.myradio {
 .dategroup {
     width: 100%;
     text-align: left;
+    margin-bottom: 20px;
 }
 
 .skill-group {
@@ -29591,15 +29603,9 @@ input.myradio {
 
 .group {
     position: relative;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     width: 100%;
-    /* LABEL ======================================= */
-    /* active state */
-    /* BOTTOM BARS ================================= */
-    /* active state */
-    /* HIGHLIGHTER ================================== */
-    /* active state */
-    /* ANIMATIONS ================ */
+    
 }
 
 .group .my-inputs {
@@ -29683,7 +29689,28 @@ input.myradio {
     -webkit-animation: inputHighlighter 0.3s ease;
     animation: inputHighlighter 0.3s ease;
 }
-
+.bg-gray-100{
+    background-color: inherit;
+}
+.shadow-md{
+    box-shadow: none;
+}
+.checkemail{
+    font-size: 1.2rem;
+}
+.antialiased{
+    background-color:rgba(0, 0, 0, 0.5);
+    background-image: url(/images/bg02.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.chat-page{
+    height: 100%;
+}
+span.mail {
+    color: #009dff;
+}
 @-webkit-keyframes inputHighlighter {
     from {
         background: #454545;
@@ -29710,6 +29737,9 @@ input.myradio {
     nav.navbar {
         padding: 22px 20px;
         z-index: 2;
+    }
+    .signform {
+        padding-top: 162px;
     }
 
     .page-middle {
@@ -29912,7 +29942,7 @@ input.myradio {
 
     .magic_link,
     .my-buttons {
-        min-width: 80%;
+        min-width: 250px;
     }
 
     .slider_image {
@@ -29945,10 +29975,6 @@ input.myradio {
 
     .avatar {
         margin-top: 20px;
-    }
-
-    .formcontent {
-        padding-top: 0;
     }
 
     .pm2 {
@@ -30016,7 +30042,7 @@ input.myradio {
     }
 
     nav.navbar.clicked ul li a {
-        color: #454545;
+        color: #454545!important;
     }
 
     nav.navbar.clicked .mobilenav {

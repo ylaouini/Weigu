@@ -38,6 +38,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Chatify
 
     Route::post('chat/blockUser',[\App\Http\Controllers\vendor\Chatify\MessagesController::class,'blockUser'])->name('block-user');
+    Route::post('chat/reportUser',[\App\Http\Controllers\vendor\Chatify\MessagesController::class,'reportUser'])->name('report-user');
 });
 
 
