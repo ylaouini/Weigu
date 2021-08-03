@@ -23,21 +23,35 @@
       </div>
       <div class="page-middle d-flex flex-column">
         <div class="setting-section">
-          <h2 class="setingtitle">Compte</h2>
-          <a href="#" class="setting-button">
-            <h2>Changer le mot de passe</h2><i class="bi bi-chevron-right"></i>
-          </a>
-          <a href="#" class="setting-button brdt">
-            <h2>Mon solde</h2><i class="bi bi-chevron-right"></i>
-          </a>
+          <h2 class="setingtitle">Préférences</h2>
         </div>
+        <!-- ============================================================== -->
         <div class="setting-section">
-          <h2 class="setingtitle">Notifications</h2>
-          <p>selectionez vos préférences par type de notification <a href="#">En savoir plus</a></p>
-          <a href="{{ route('dashboard.settings.preferences') }}" class="setting-button brdt">
-            <h2>Préférences</h2><i class="bi bi-chevron-right"></i>
+          <a class="setting-button brdt">
+            <h2>Notification par mail</h2></i>
           </a>
         </div>
+        <div class="">
+          <div class="button-nd">
+            <h3 class="button-name m-0">Nouvelles questions reçues</h3>
+            <div class="myswitch">
+              <input type="checkbox" id="toggle1" />
+              <label for="toggle1"></label>
+            </div>
+          </div>
+        </div>
+        <div class="">
+          <div class="button-nd">
+            <h3 class="button-name m-0">Messages non lus</h3>
+            <div class="myswitch">
+              <input type="checkbox" id="toggle2" />
+              <label for="toggle2"></label>
+            </div>
+          </div>          
+        </div>
+
+        <!-- ============================================================== -->
+
         <div class="setting-section">
           <h2 class="setingtitle">Others</h2>
           <a href="/privacy" class="setting-button">
@@ -47,7 +61,6 @@
             <h2>Terms & Conditions</h2><i class="bi bi-chevron-right"></i>
           </a>
           <div class="setting-button logout-button brdt">
-            {{-- make it functional :D --}}
             <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               <h2>Déconnexion</h2>
             </a>
@@ -60,5 +73,4 @@
     </div>
   </div>
 </body>
-
 </html>
