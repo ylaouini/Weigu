@@ -45,7 +45,7 @@ class ReportedUser extends Notification
     {
         return (new MailMessage)
                     ->from($this->user->email)
-                    ->line('Cet utilisateur a été signalé');
+                    ->line('Cet utilisateur a été signalé: '.$this->userReported);
 //                    ->action('Notification Action', url('/'))
 //                    ->line('Thank you for using our application!');
     }
