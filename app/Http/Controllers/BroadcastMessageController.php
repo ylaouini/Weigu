@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Events\TotalQuestionChanged;
-use App\Mail\ScheduledBroadcastMessage;
 use App\Models\BroadcastMessage;
 use App\Models\User;
-use Chatify\Facades\ChatifyMessenger as Chatify;
+use App\Models\ChMessage as Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 
 class BroadcastMessageController extends Controller
 {
@@ -32,9 +30,11 @@ class BroadcastMessageController extends Controller
             foreach ($receivers as $receiver) {
                 $this->sendMessage($message, $receiver);
                 if ($receiver->notify_me == 1) {
-                    Mail::to($receiver)->send(new ScheduledBroadcastMessage($receiver, $sender->name, $message));
+
+                    $receiver->notify(new \App\Notifications\BroadcastMessage($receiver, $sender->name, $message));
+
+//                    Mail::to($receiver)->send(new ScheduledBroadcastMessage($receiver, $sender->name, $message));
                 }
-//                $receiver->notify(new ScheduledBroadcastMessage($receiver, $sender->name, $message));
             }
         }
 
@@ -42,7 +42,7 @@ class BroadcastMessageController extends Controller
 //        event(new TotalQuestionChanged($totalQuestions, $message->message, \auth()->user()->name));
         event(new TotalQuestionChanged($totalQuestions, $request->input('message'), $sender->name));
 
-        app(scheduledMessage::class);
+//        app(scheduledMessage::class);
 
         return "message has been created";
     }
@@ -96,28 +96,29 @@ class BroadcastMessageController extends Controller
         $attachment_title = null;
         // send to database
         $messageID = mt_rand(9, 999999999) + time();
-        Chatify::newMessage([
-            'id' => $messageID,
-            'type' => 3,
-            'from_id' => $broadcastMessage->user_id,
-            'to_id' => $reciever->id,
-            'body' => htmlentities(trim($broadcastMessage->message), ENT_QUOTES, 'UTF-8'),
-            'attachment' => ($attachment) ? json_encode((object)[
-                'new_name' => $attachment,
-                'old_name' => $attachment_title,
-            ]) : null,
 
-        ]);
+        $message = new Message();
+        $message->id = $messageID;
+        $message->type = 3;
+        $message->broadcast_message_id = $broadcastMessage->id;
+        $message->from_id = $broadcastMessage->user_id;
+        $message->to_id = $reciever->id;
+        $message->body = htmlentities(trim($broadcastMessage->message), ENT_QUOTES, 'UTF-8');
+        $message->attachment = ($attachment) ? json_encode((object)[
+            'new_name' => $attachment,
+            'old_name' => $attachment_title
+        ]) : null;
+        $message->save();
 
-        // fetch message to send it with the response
-        $messageData = Chatify::fetchMessage($messageID);
-
-        // send to user using pusher
-        Chatify::push('private-chatify', 'messaging', [
-            'from_id' => $broadcastMessage->user_id,
-            'to_id' => $reciever->id,
-            'message' => Chatify::messageCard($messageData, 'default')
-        ]);
+//        // fetch message to send it with the response
+//        $messageData = Chatify::fetchMessage($messageID);
+//
+//        // send to user using pusher
+//        Chatify::push('private-chatify', 'messaging', [
+//            'from_id' => $broadcastMessage->user_id,
+//            'to_id' => $reciever->id,
+//            'message' => Chatify::messageCard($messageData, 'default')
+//        ]);
     }
 
 }
