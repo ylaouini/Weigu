@@ -26,11 +26,11 @@ return [
     |-------------------------------------
     */
     'pusher' => [
-        'key' => env('PUSHER_APP_KEY'),
-        'secret' => env('PUSHER_APP_SECRET'),
-        'app_id' => env('PUSHER_APP_ID'),
+        'key' => 'd7bf66c76ba2c97f9c2e',
+        'secret' =>'cc90489a0b9a81d30b9a',
+        'app_id' => 1234490,
         'options' => (array) [
-            'cluster' => env('PUSHER_APP_CLUSTER'),
+            'cluster' => 'eu',
             'useTLS' => env('PUSHER_APP_USETLS'),
         ],
     ],
