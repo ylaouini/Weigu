@@ -70,4 +70,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(BlockedUser::class);
     }
+
+    public function routeNotificationForMail($notification)
+    {
+
+
+        // Return email address and name...
+        return [$this->email => $this->name];
+    }
 }
