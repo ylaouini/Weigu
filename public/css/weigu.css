@@ -27791,7 +27791,6 @@ p {
 .description {
     font-size: 0.9rem;
     width: 80%;
-    padding-bottom: 15px;
     align-self: center;
 }
 
@@ -27805,7 +27804,7 @@ p {
     display: flex;
     align-items: center;
     align-self: center;
-    padding: 1.5rem;
+    padding:0 1.5rem;
     font-size: 1rem;
 }
 
@@ -28081,7 +28080,7 @@ img.sharelove {
 
     .description {
         font-size: 0.95rem;
-        margin:25px 0;
+        margin:30px 0;
     }
 
     body {
@@ -29260,10 +29259,6 @@ p.anonyme {
     text-transform: lowercase;
 }
 
-.img__btn {
-    min-width: 250px;
-}
-
 
 input#messengerSearch {
     border: 1px solid #c5c5c54d !important;
@@ -29444,8 +29439,8 @@ a:hover {
     overflow: hidden;
     z-index: 2;
     position: relative;
-    width: 160px;
-    height: 36px;
+    width: 250px;
+    height: 45px;
     margin: 0 auto;
     background: transparent;
     color: #fff;
@@ -29463,7 +29458,7 @@ a:hover {
     width: 100%;
     height: 100%;
     border: 2px solid #fff;
-    border-radius: 30px;
+    border-radius: 5px;
 }
 
 .img__btn span {
@@ -29499,13 +29494,14 @@ nav.navbar {
 }
 
 .my-buttons {
-    min-width: 60%;
+    min-width: 100%;
     border: 2px solid;
-    padding: 5px 20px;
-    border-radius: 50px!important;
-    color: #00b050;
+    padding: 7px 20px;
+    border-radius: 5px!important;
+    color: #00B057;
     text-transform: uppercase;
     background-color: #fff;
+    margin-top: 5px!important;
 }
 
 .my-buttons:hover {
@@ -29561,7 +29557,7 @@ h5.rejoins {
 
 .group-radio {
     width: 100%;
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
 input.myradio {
@@ -29595,29 +29591,11 @@ input.myradio {
     height: 38px;
     padding: 2px;
     border: none;
-    border-bottom: 2px solid #454545;
-    border-radius: 0;
+    border: 2px solid #454545;
+    border-radius: 5px !important;
 }
 
 /* form starting stylings ------------------------------- */
-
-.group {
-    position: relative;
-    margin-bottom: 20px;
-    width: 100%;
-    
-}
-
-.group .my-inputs {
-    margin: 0;
-    font-size: 1rem;
-    padding: 10px 10px 10px 5px;
-    display: block;
-    width: 100%;
-    border: none;
-    border-bottom: 1px solid #454545;
-    --tw-ring-shadow:none;
-}
 
 .group .my-inputs:focus {
     outline: none;
@@ -29732,6 +29710,13 @@ span.mail {
         background: transparent;
     }
 }
+.my-inputs {
+    border: 2px solid #454545;
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 5px!important;
+    margin: 0;
+}
 
 @media screen and (min-width: 768px) {
     nav.navbar {
@@ -29798,7 +29783,9 @@ span.mail {
         top: 18px;
         right: 24px;
     }
-
+    .description{
+        margin-bottom: 30px;
+    }
     .my-container {
         width: 70%;
         max-width: 1024px;
@@ -29941,11 +29928,6 @@ span.mail {
         font-size: 1.5rem;
     }
 
-    .magic_link,
-    .my-buttons {
-        min-width: 250px;
-    }
-
     .slider_image {
         position: relative;
     }
@@ -29955,6 +29937,7 @@ span.mail {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        width: calc(100% - 3rem);
     }
 
     .signform {

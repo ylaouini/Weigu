@@ -909,6 +909,10 @@ function reportUser(id) {
                 buttons: true,
                 body: "",
             });
+
+            // reload the page
+            location.reload(true);
+
         },
         error: () => {
             console.error("Server error, check your response");
@@ -958,6 +962,9 @@ function blockUser(id) {
                 buttons: true,
                 body: "",
             });
+
+            // reload the page
+            location.reload(true);
         },
         error: () => {
             console.error("Server error, check your response");

@@ -8,6 +8,7 @@ use App\Models\ChMessage;
 use App\Models\User;
 use Carbon\Carbon;
 use Chatify\Facades\ChatifyMessenger as Chatify;
+use App\Models\ChMessage as Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -155,18 +156,19 @@ class ScheduledMessage extends Controller
         $attachment_title = null;
         // send to database
         $messageID = mt_rand(9, 999999999) + time();
-        Chatify::newMessage([
-            'id' => $messageID,
-            'type' => 3,
-            'from_id' => $broadcastMessage->user_id,
-            'to_id' => $reciever->id,
-            'body' => htmlentities(trim($broadcastMessage->message), ENT_QUOTES, 'UTF-8'),
-            'attachment' => ($attachment) ? json_encode((object)[
-                'new_name' => $attachment,
-                'old_name' => $attachment_title,
-            ]) : null,
+        $message = new Message();
+        $message->id = $messageID;
+        $message->type = 3;
+        $message->broadcast_message_id = $broadcastMessage->id;
+        $message->from_id = $broadcastMessage->user_id;
+        $message->to_id = $reciever->id;
+        $message->body = htmlentities(trim($broadcastMessage->message), ENT_QUOTES, 'UTF-8');
+        $message->attachment = ($attachment) ? json_encode((object)[
+            'new_name' => $attachment,
+            'old_name' => $attachment_title
+        ]) : null;
+        $message->save();
 
-        ]);
 
         // fetch message to send it with the response
         $messageData = Chatify::fetchMessage($messageID);

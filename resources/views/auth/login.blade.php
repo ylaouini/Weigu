@@ -139,7 +139,10 @@
                         {{-- <label>Mot de passe</label>--}}
                         {{-- </div>--}}
                         <input type="hidden" value="password" name="password" />
-                        @if ($errors->any())
+                        <input type="checkbox" class="form-checkbox" name="remember" hidden checked>
+
+
+                    @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
@@ -238,7 +241,7 @@
     $(".img__btn").click(function() {
         $(".cont").toggleClass("s--signup");
         $("nav.navbar").toggleClass("hideitmobile");
-        $(".nav-right li a").toggleClass("towhite");        
+        $(".nav-right li a").toggleClass("towhite");
     });
     $("#toconnect").click(function() {
         $(".cont").toggleClass("s--signup");
