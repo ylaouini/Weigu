@@ -38,7 +38,8 @@
 .messenger-messagingView {
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
-    background: #fafaff;
+    /*background: #fafaff;*/
+    background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(/images/pattern.jpg?3b5cf1435ac4a2ea2846c3d7fc48f856);
 }
 .m-header-messaging {
     background: #fff;
