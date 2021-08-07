@@ -201,7 +201,7 @@ body {
   background-position: center center;
 }
 .av-l {
-  width: 100px;
+  width: 100px !important;
   height: 100px;
 }
 .av-m {
@@ -313,6 +313,9 @@ body {
   display: none;
 }
 .messenger-infoView-btns .block-user {
+    display: none;
+}
+.messenger-infoView-btns .report-user {
     display: none;
 }
 .message-card {
