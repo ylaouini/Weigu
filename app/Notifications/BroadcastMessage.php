@@ -52,7 +52,7 @@ class BroadcastMessage extends Notification
         return (new MailMessage)
             ->from('noreply@weigu-app.com')
             ->subject('Nouveau message')
-            ->line('Salut '.$this->receiver->name)
+            ->greeting('Salut '.$this->receiver->name)
             ->line('Vous avez reçu un nouveau message de '.$this->sender.':')
             ->line($this->message->message)
             ->action('Aller au message', URL::route('chat'))
