@@ -18,7 +18,7 @@ class ReportedUser extends Notification
      *
      * @return void
      */
-    public function __construct($user,$userReported)
+    public function __construct($user, $userReported)
     {
         $this->user = $user;
         $this->userReported = $userReported;
@@ -27,7 +27,7 @@ class ReportedUser extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
      * @return array
      */
     public function via($notifiable)
@@ -38,14 +38,15 @@ class ReportedUser extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->from($this->user->email)
-                    ->line('Cet utilisateur a été signalé: '.$this->userReported);
+            ->from($this->user->email)
+            ->greeting('Salut!')
+            ->line('Cet utilisateur a été signalé: ' . $this->userReported);
 //                    ->action('Notification Action', url('/'))
 //                    ->line('Thank you for using our application!');
     }
@@ -53,7 +54,7 @@ class ReportedUser extends Notification
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
      * @return array
      */
     public function toArray($notifiable)
