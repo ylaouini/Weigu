@@ -31,6 +31,20 @@
         </div>
     </div>
 </div>
+
+{{-- ---------------------- report Modal ---------------------- --}}
+<div class="app-modal" data-name="report">
+    <div class="app-modal-container">
+        <div class="app-modal-card" data-name="report" data-modal='0'>
+            <div class="app-modal-header">Signaler cet utilisateur?</div>
+            {{--            <div class="app-modal-body">You can not undo this action</div>--}}
+            <div class="app-modal-footer">
+                <a href="javascript:void(0)" class="app-btn cancel">Cancel</a>
+                <a href="javascript:void(0)" class="app-btn a-btn-danger block">Signale</a>
+            </div>
+        </div>
+    </div>
+</div>
   {{-- ---------------------- Alert Modal ---------------------- --}}
   <div class="app-modal" data-name="alert">
       <div class="app-modal-container">
