@@ -35,7 +35,7 @@ class ScheduledBroadcastMessage extends Mailable
      */
     public function build()
     {
-        return $this->from('noreplay@weigu-app.com')
+        return $this->from('noreply@weigu-app.com')
             ->view('vendor.mail.html.schedulerMessage')
             ->with([
                 'name' => $this->receiver->name,
