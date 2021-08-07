@@ -4,6 +4,8 @@ namespace App\Http\Controllers\vendor\Chatify;
 
 use App\Models\BlockedUser;
 use App\Models\Notification;
+use App\Notifications\AdvisePassPhrase;
+use App\Notifications\ReportedUser;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
@@ -201,14 +203,14 @@ class MessagesController extends Controller
         $allMessages = null;
 
         // fetch messages
-        $query = Chatify::fetchMessagesQuery($request['id'])->orderBy('created_at', 'asc');
+        $query = $this->fetchMessagesQuery($request['id'])->orderBy('created_at', 'asc');
         $messages = $query->get();
 
         // if there is a messages
         if ($query->count() > 0) {
             foreach ($messages as $message) {
                 $allMessages .= Chatify::messageCard(
-                    Chatify::fetchMessage($message->id)
+                    $this->fetchMessage($message->id)
                 );
             }
             // send the response
@@ -513,6 +515,83 @@ class MessagesController extends Controller
         // send the response
         return Response::json([
             'status' => $update,
+        ], 200);
+    }
+
+    /**
+     * Default fetch messages query between a Sender and Receiver.
+     *
+     * @param int $user_id
+     * @return Collection
+     */
+    public function fetchMessagesQuery($user_id){
+        return Message::where('from_id',Auth::user()->id)->where('to_id',$user_id)
+            ->orWhere('from_id',$user_id)->where('to_id',Auth::user()->id);
+    }
+
+
+    /**
+     * Fetch message by id and return the message card
+     * view as a response.
+     *
+     * @param int $id
+     * @return array
+     */
+    public function fetchMessage($id){
+        $attachment = null;
+        $attachment_type = null;
+        $attachment_title = null;
+
+        $msg = Message::where('id',$id)->first();
+
+        if(isset($msg->attachment)){
+            $attachmentOBJ = json_decode($msg->attachment);
+            $attachment = $attachmentOBJ->new_name;
+            $attachment_title = $attachmentOBJ->old_name;
+
+            $ext = pathinfo($attachment, PATHINFO_EXTENSION);
+            $attachment_type = in_array($ext,$this->getAllowedImages()) ? 'image' : 'file';
+        }
+
+        return [
+            'id' => $msg->id,
+            'from_id' => $msg->from_id,
+            'to_id' => $msg->to_id,
+            'message' => $msg->body,
+            'attachment' => [$attachment, $attachment_title, $attachment_type],
+            'time' => $msg->created_at->diffForHumans(),
+            'fullTime' => $msg->created_at,
+            'viewType' => ($msg->from_id == Auth::user()->id) ? 'sender' : 'default',
+            'seen' => $msg->seen,
+        ];
+    }
+
+    /**
+     * This method returns the allowed image extensions
+     * to attach with the message.
+     *
+     * @return array
+     */
+    public function getAllowedImages(){
+        return config('chatify.attachments.allowed_images');
+    }
+
+    public function reportUser(Request $request)
+    {
+
+        $reported = \Illuminate\Support\Facades\Notification::route('mail',[
+            'laouini.info@gmail.com' => 'Yassine LAOUINI'
+        ])->notify(new ReportedUser(\auth()->user(), $request['id']));
+
+//        \auth()->user()->notify(new ReportedUser());
+//        $reported = BlockedUser::create([
+//            'user_id' => \auth()->id(),
+//            'user_blocked_id' => $request['id']
+//        ]);
+
+        // send the response
+        return Response::json([
+            'reported' => $reported ? 1 : 0,
         ], 200);
     }
 }
