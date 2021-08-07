@@ -493,6 +493,12 @@ class MessagesController extends Controller
             }
         }
 
+        // if name is changed
+        if ($request['name'] != \auth()->user()->name){
+            \auth()->user()->name = $request['name'];
+            \auth()->user()->save();
+        }
+
         // send the response
         return Response::json([
             'status' => $success ? 1 : 0,
