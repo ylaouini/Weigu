@@ -63,13 +63,15 @@
           <div class="app-modal-card" data-name="settings" data-modal='0'>
               <form id="update-settings" action="{{ route('avatar.update') }}" enctype="multipart/form-data" method="POST">
                   @csrf
+                  <div class="app-modal-footer">
+                  <a href="javascript:void(0)" class="app-btn cancel"><i class="bi bi-x-lg"></i></a></div>
                   <div class="app-modal-header">Mettre à jour les paramètres de votre profil</div>
                   <div class="app-modal-body">
                       {{-- Udate profile avatar --}}
                       <div class="avatar av-l upload-avatar-preview"
                       style="background-image: url('{{ asset('/storage/'.config('chatify.user_avatar.folder').'/'.Auth::user()->avatar) }}');"
                       ></div>
-                      <input type="text" name="name" value="{{Auth::user()->name}}">
+                      <input type="text" class="my-inputs" name="name" value="{{Auth::user()->name}}">
                       <p class="divider"></p>
                       <p class="upload-avatar-details"></p>
                       <label class="app-btn a-btn-primary update">
@@ -99,8 +101,7 @@
                       </div>
                   </div>
                   <div class="app-modal-footer">
-                      <a href="javascript:void(0)" class="app-btn cancel">Cancel</a>
-                      <input type="submit" class="app-btn a-btn-success update" value="Update" />
+                      <input type="submit" class="my-buttons" value="Update" />
                   </div>
               </form>
           </div>

@@ -8,7 +8,7 @@
             <h5 class="rejoindre"><span class="pagelogo hideitdesktop">Weigu</span></h5>
             {{-- <form id="registerForm" method="POST" action="{{ route('register') }}" class="formcontent">--}}
             <form id="registerForm" class="formcontent">
-                <h5  class="rejoins">Rejoins-nous !</h5>
+                <h5 class="rejoins">Rejoins-nous !</h5>
                 @csrf
                 {{-- <div class="group">--}}
                 {{-- <input type="text" name="name" class="my-inputs" name="name" value="" autocomplete="name"--}}
@@ -18,13 +18,7 @@
                 {{-- <label>Nom d’utilisateur</label>--}}
                 {{-- </div>--}}
                 <input type="hidden" value="Anonyme" name="name" />
-
-                <div class="group">
-                    <input type="text" name="email" :value="old('email')" class="my-inputs" required autocomplete="email">
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label>Courriel</label>
-                </div>
+                <input type="text" name="email" :value="old('email')" class="my-inputs" required placeholder="Email" autocomplete="email">
                 {{-- <div class="group">--}}
                 {{-- <input type="password" name="password" class="my-inputs" id="password" required--}}
                 {{-- autocomplete="new-password">--}}
@@ -125,13 +119,7 @@
                     {{-- <form method="POST" action="{{ route('login') }}" class="formcontent">--}}
                     <form method="POST" action="{{ route('login') }}" id="emailForm" class="formcontent">
                         @csrf
-                        <div class="group">
-                            {{-- <input type="text" name="email" class="my-inputs" id="emailInput" required>--}}
-                            <input class="my-inputs" id="email" class="block mt-1 w-full" type="text" name="email" :value="old('email')" required autofocus>
-                            <span class="highlight"></span>
-                            <span class="bar"></span>
-                            <label>Email</label>
-                        </div>
+                        <input class="my-inputs" id="email" class="block mt-1 w-full" type="text" name="email" placeholder="Email" :value="old('email')" required autofocus>
                         {{-- <div id="pwd" class="group hideit">--}}
                         {{-- <input type="password" name="password" class="my-inputs" id="passwordInput" required>--}}
                         {{-- <span class="highlight"></span>--}}
@@ -142,7 +130,7 @@
                         <input type="checkbox" class="form-checkbox" name="remember" hidden checked>
 
 
-                    @if ($errors->any())
+                        @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)

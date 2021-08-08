@@ -28948,6 +28948,7 @@ p.anonyme {
     top: 8px;
     left: 8px;
     border-radius: 50%;
+    height: 35px;
 }
 
 .navigation-bar {
@@ -29498,16 +29499,16 @@ nav.navbar {
     border: 2px solid;
     padding: 7px 20px;
     border-radius: 5px!important;
-    color: #00B057;
+    background-color: #00B057;
     text-transform: uppercase;
-    background-color: #fff;
+    color: #fff;
+    border-color: #00b050;
     margin-top: 5px!important;
 }
 
 .my-buttons:hover {
-    color: #fff;
-    background-color: #00b050;
-    border-color: #00b050;
+    background-color: #fff;
+    color: #00b050;
 }
 
 .magic_link {
@@ -29717,7 +29718,10 @@ span.mail {
     border-radius: 5px!important;
     margin: 0;
 }
-
+a.app-btn.cancel {
+    margin-bottom: 20px;
+    margin-left: 96%;
+}
 @media screen and (min-width: 768px) {
     nav.navbar {
         padding: 22px 20px;
@@ -30045,4 +30049,5 @@ span.mail {
     .messenger-messagingView {
         height: calc(100% - 70px);
     }
+
 }
