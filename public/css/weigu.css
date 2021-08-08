@@ -29498,16 +29498,16 @@ nav.navbar {
     border: 2px solid;
     padding: 7px 20px;
     border-radius: 5px!important;
-    color: #00B057;
+    background-color: #00B057;
     text-transform: uppercase;
-    background-color: #fff;
+    color: #fff;    
+    border-color: #00b050;
     margin-top: 5px!important;
 }
 
 .my-buttons:hover {
-    color: #fff;
-    background-color: #00b050;
-    border-color: #00b050;
+    background-color: #fff;
+    color: #00b050;
 }
 
 .magic_link {

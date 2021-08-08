@@ -18,12 +18,7 @@
             <div>
                 <label class="checkemail mb-4 text-center" for="passphrase">Nous vous avons envoyé un lien de confirmation.</label>
                 <label class="pb-4 text-center">Nous avons envoyé un e-mail à <span class="mail">stevykana@yahoo.fr</span><br> Il contient un lien qui finalisera votre inscription.</label>
-                <div class="group mt-4">
-                    <input class="my-inputs" class="" type="text" name="passphrase" required autofocus>
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label>Passphrase</label>
-                </div>
+                <input class="my-inputs mt-4" class="" type="text" name="passphrase" placeholder="Passphrase" required autofocus>
             </div>
 
             <div class="flex items-center justify-center mt-4">

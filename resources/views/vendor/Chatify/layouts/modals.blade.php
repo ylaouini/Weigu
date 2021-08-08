@@ -69,7 +69,7 @@
                       <div class="avatar av-l upload-avatar-preview"
                       style="background-image: url('{{ asset('/storage/'.config('chatify.user_avatar.folder').'/'.Auth::user()->avatar) }}');"
                       ></div>
-                      <input type="text" name="name" value="{{Auth::user()->name}}">
+                      <input type="text" class="my-inputs" name="name" value="{{Auth::user()->name}}">
                       <p class="divider"></p>
                       <p class="upload-avatar-details"></p>
                       <label class="app-btn a-btn-primary update">
