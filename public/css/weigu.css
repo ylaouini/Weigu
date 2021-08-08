@@ -28948,6 +28948,7 @@ p.anonyme {
     top: 8px;
     left: 8px;
     border-radius: 50%;
+    height: 35px;
 }
 
 .navigation-bar {
@@ -29500,7 +29501,7 @@ nav.navbar {
     border-radius: 5px!important;
     background-color: #00B057;
     text-transform: uppercase;
-    color: #fff;    
+    color: #fff;
     border-color: #00b050;
     margin-top: 5px!important;
 }
@@ -30048,5 +30049,5 @@ a.app-btn.cancel {
     .messenger-messagingView {
         height: calc(100% - 70px);
     }
-    
+
 }
