@@ -135,7 +135,7 @@
         }, 1700);
         setTimeout(function() {
             location.reload();
-        }, 5700);
+        }, 2700);
 
     }
 
