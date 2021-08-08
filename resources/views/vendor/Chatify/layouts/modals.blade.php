@@ -63,7 +63,7 @@
           <div class="app-modal-card" data-name="settings" data-modal='0'>
               <form id="update-settings" action="{{ route('avatar.update') }}" enctype="multipart/form-data" method="POST">
                   @csrf
-                  <div class="app-modal-header">Update your profile settings</div>
+                  <div class="app-modal-header">Mettre à jour les paramètres de votre profil</div>
                   <div class="app-modal-body">
                       {{-- Udate profile avatar --}}
                       <div class="avatar av-l upload-avatar-preview"
