@@ -29717,7 +29717,10 @@ span.mail {
     border-radius: 5px!important;
     margin: 0;
 }
-
+a.app-btn.cancel {
+    margin-bottom: 20px;
+    margin-left: 96%;
+}
 @media screen and (min-width: 768px) {
     nav.navbar {
         padding: 22px 20px;
@@ -30045,4 +30048,5 @@ span.mail {
     .messenger-messagingView {
         height: calc(100% - 70px);
     }
+    
 }
