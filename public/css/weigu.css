@@ -27789,7 +27789,7 @@ p {
 }
 
 .description {
-    font-size: 0.9rem;
+    font-size:1.1rem;
     width: 80%;
     align-self: center;
 }
@@ -29491,7 +29491,7 @@ nav.navbar {
 }
 
 .app_logo h1 {
-    font-size: 5vw;
+    font-size: 3.5vw;
 }
 
 .my-buttons {
@@ -29721,6 +29721,9 @@ span.mail {
 a.app-btn.cancel {
     margin-bottom: 20px;
     margin-left: 96%;
+}
+.hidenavbar{
+    z-index: 6;
 }
 @media screen and (min-width: 768px) {
     nav.navbar {
@@ -30047,7 +30050,7 @@ a.app-btn.cancel {
     }
 
     .messenger-messagingView {
-        height: calc(100% - 70px);
+        height: 100%;
     }
 
 }

@@ -12,7 +12,7 @@ use Laravel\Fortify\Contracts\LoginResponse;
 class PassPhraseController extends Controller
 {
     public function show(){
-        return view('auth.passphrase');
+        return view('auth.passphrase',['userEmail'=>Auth::user()->email]);
     }
 
 

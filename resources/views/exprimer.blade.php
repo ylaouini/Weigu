@@ -54,8 +54,10 @@
                 <div>
                     <input type="hidden" name="type" value="1" />
                     <div class="d-flex sendsection justify-content-between">
+                    <button onclick="deletecontent()">
                         <span class="cancel">Annuler</span>
-                        <button onclick="paperplane()">
+                    </button>
+                            <button onclick="paperplane()">
                             <img id="send" src="{{ asset('/images/icons/Grey/send.png') }}" alt="">
                         </button>
                     </div>
@@ -113,7 +115,9 @@
         $(".tab-bar.expr .tabbi2").removeClass("hideit");
     });
 
-
+    function deletecontent(){
+        $("#story").val("");
+    }
     function paperplane() {
         let msgData = new FormData();
         msgData.append("_token", "{{ csrf_token() }}");
@@ -135,7 +139,7 @@
         }, 1700);
         setTimeout(function() {
             location.reload();
-        }, 2700);
+        }, 5700);
 
     }
 
