@@ -29,7 +29,7 @@ class BroadcastMessageController extends Controller
 
             foreach ($receivers as $receiver) {
                 $this->sendMessage($message, $receiver);
-                if ($receiver->notify_me == 1) {
+                if ($receiver->notify_me_question == 1) {
 
                     $receiver->notify(new \App\Notifications\BroadcastMessage($receiver, $sender->name, $message));
 

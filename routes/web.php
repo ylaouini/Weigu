@@ -29,7 +29,10 @@ Route::post('/check-email', [\App\Actions\Fortify\AuthenticateLoginAttempt::clas
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/exprimer', [HomeController::class, 'exprimer'])->name('dashboard.exprimer');
-    Route::view('/settings', 'settings')->name('dashboard.settings');
+//    Route::view('/settings', 'settings')->name('dashboard.settings');
+    Route::get('/settings',[\App\Http\Controllers\SettingsController::class,'index'])->name('dashboard.settings');
+    Route::get('/settingsChangeMessage',[\App\Http\Controllers\SettingsController::class,'changeStatusNotifictionMessage']);
+    Route::get('/settingsChangeQuestion',[\App\Http\Controllers\SettingsController::class,'changeStatusNotifictionQuestion']);
     Route::post('/exprimer/send', [BroadcastMessageController::class, 'insertRecord'])->name('dashboard.exprimer.add');
 
     Route::resource('change-password', \App\Http\Controllers\PasswordController::class);

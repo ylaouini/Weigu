@@ -113,8 +113,7 @@
                     {{-- </div>--}}
                     <div class="description">
                         Et si on faisait les choses autrement ? <br>
-                        Initie des discussions<span> en posant des questions</span>.
-                        Sur Weigu, tu trouveras toujours quelqu’un à qui parler.
+                        Initie des discussions<span> en posant des questions</span>.<br>Sur Weigu, tu trouveras toujours quelqu’un à qui parler.
                     </div>
                     {{-- <form method="POST" action="{{ route('login') }}" class="formcontent">--}}
                     <form method="POST" action="{{ route('login') }}" id="emailForm" class="formcontent">

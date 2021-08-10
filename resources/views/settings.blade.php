@@ -9,15 +9,15 @@
   <link rel="stylesheet" href="{{ URL::asset('css/owl.carousel.css') }}" />
   <link rel="stylesheet" href="{{ URL::asset('css/weigu.css') }}" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
 
-<body class="d-flex flex-column josefin">
+<body class="d-flex flex-column justify-content-between josefin">
   <div class="grey-bg scroll">
     <div class=" my-container">
       <div class="page-top">
         <div class="page-title">
-          <a href="{{ URL::previous() }}"><i class="bi bi-chevron-left"></i></a>
           <h2>Paramètres</h2>
         </div>
       </div>
@@ -35,7 +35,7 @@
           <div class="button-nd">
             <h3 class="button-name m-0">Nouvelles questions reçues</h3>
             <div class="myswitch">
-              <input type="checkbox" id="toggle1" />
+              <input class="question" type="checkbox" id="toggle1" @if(\Illuminate\Support\Facades\Auth::user()->notify_me_question == 1) checked @endif/>
               <label for="toggle1"></label>
             </div>
           </div>
@@ -44,10 +44,10 @@
           <div class="button-nd">
             <h3 class="button-name m-0">Messages non lus</h3>
             <div class="myswitch">
-              <input type="checkbox" id="toggle2" />
+              <input class="message" type="checkbox" id="toggle2" @if(\Illuminate\Support\Facades\Auth::user()->notify_me_message == 1) checked @endif/>
               <label for="toggle2"></label>
             </div>
-          </div>          
+          </div>
         </div>
 
         <!-- ============================================================== -->
@@ -72,5 +72,44 @@
       </div>
     </div>
   </div>
+  @include('partials._navbar')
 </body>
+<script>
+  $(document).ready(function() {
+    $(".tab-bar.profil .tabbi1").addClass("hideit");
+    $(".tab-bar.profil .tabbi2").removeClass("hideit");
+  });
+  $(function() {
+        $('.message').change(function() {
+            var status = $(this).prop('checked') == true ? 1 : 0;
+            var user_id = {{\Illuminate\Support\Facades\Auth::id()}};
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: '/settingsChangeMessage',
+                data: {'status': status, 'user_id': user_id},
+                success: function(data){
+                    console.log(data.success)
+                }
+            });
+        })
+
+        $('.question').change(function() {
+            var status = $(this).prop('checked') == true ? 1 : 0;
+            var user_id = {{\Illuminate\Support\Facades\Auth::id()}};
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: '/settingsChangeQuestion',
+                data: {'status': status, 'user_id': user_id},
+                success: function(data){
+                    console.log(data.success)
+                }
+            });
+        })
+    })
+</script>
+
 </html>

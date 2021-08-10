@@ -126,6 +126,12 @@
 @include('Chatify::layouts.modals')
 @include('Chatify::layouts.footerLinks')
 @include('partials._navbar')
+<script>
+    $(document).ready(function() {
+      $(".tab-bar.chatpage .tabbi1").addClass("hideit");
+      $(".tab-bar.chatpage .tabbi2").removeClass("hideit");
+    });
+  </script>
 
 </div>
 

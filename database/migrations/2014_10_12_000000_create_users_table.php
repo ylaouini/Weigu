@@ -21,7 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->boolean('gender');
             $table->date('birth_date')->nullable();
-            $table->string('notify_me')->default(1);
+            $table->string('notify_me_message')->default(1);
+            $table->string('notify_me_question')->default(1);
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();

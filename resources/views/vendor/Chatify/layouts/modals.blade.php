@@ -58,7 +58,7 @@
       </div>
   </div>
   {{-- ---------------------- Settings Modal ---------------------- --}}
-  <div class="app-modal" data-name="settings">
+  <div class="app-modal hidenavbar" data-name="settings">
       <div class="app-modal-container">
           <div class="app-modal-card" data-name="settings" data-modal='0'>
               <form id="update-settings" action="{{ route('avatar.update') }}" enctype="multipart/form-data" method="POST">
