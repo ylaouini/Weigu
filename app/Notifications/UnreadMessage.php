@@ -8,26 +8,24 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\URL;
 
-class AdvisePassPhrase extends Notification
+class UnreadMessage extends Notification implements ShouldQueue
 {
     use Queueable;
-
-    public $passphrase;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(string $passphrase)
+    public function __construct()
     {
-        $this->passphrase = $passphrase;
+        //
     }
 
     /**
      * Get the notification's delivery channels.
      *
-     * @param mixed $notifiable
+     * @param  mixed  $notifiable
      * @return array
      */
     public function via($notifiable)
@@ -38,31 +36,24 @@ class AdvisePassPhrase extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param mixed $notifiable
+     * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
         return (new MailMessage)
             ->from('noreply@weigu-app.com','Weigu')
-            ->subject('Votre code de connexion pour ' . config('app.name'))
-            ->greeting('Salut!')
-            ->line('Voici votre mot de passe de connexion qui est valable pour les 15 prochaines minutes')
-            ->line($this->passphrase)
-
-//            ->line('Vous pouvez aussi cliquer sur le bouton ci-dessous pour accéder au site')
-//            ->action('Confirm', URL::temporarySignedRoute(
-//                'login.magiclink',
-//                now()->addMinutes(15),
-//                ['user' => $notifiable->id, 'code' => $this->passphrase]
-//            ))
+            ->subject('Nouveau message')
+            ->greeting('Salut '.$notifiable->name)
+            ->line('Vous avez des message non lu')
+            ->action('Aller au message', URL::route('chat'))
             ->line('Merci d\'utiliser notre application!');
     }
 
     /**
      * Get the array representation of the notification.
      *
-     * @param mixed $notifiable
+     * @param  mixed  $notifiable
      * @return array
      */
     public function toArray($notifiable)

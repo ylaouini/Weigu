@@ -1,6 +1,6 @@
 {{-- user info and avatar --}}
-<div class="avatar av-l"></div>
-<p class="info-name">{{ config('chatify.name') }}</p>
+<div class="avatar av-l" style="background-image: url('{{ asset('/storage/'.config('chatify.user_avatar.folder').'/'.Auth::user()->avatar) }}');"></div>
+<p class="info-name">{{Auth::user()->name}}"</p>
 {{--<div class="messenger-infoView-btns">--}}
 {{--    <a href="#" class="danger delete-conversation"><i class="fas fa-trash-alt"></i> Supprimer Conversation</a>--}}
 {{--</div>--}}
