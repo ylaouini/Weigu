@@ -12,14 +12,15 @@ class UnreadMessage extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    public $messageCount;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($messageCount)
     {
-        //
+        $this->messageCount = $messageCount;
     }
 
     /**
@@ -45,7 +46,7 @@ class UnreadMessage extends Notification implements ShouldQueue
             ->from('noreply@weigu-app.com','Weigu')
             ->subject('Nouveau message')
             ->greeting('Salut '.$notifiable->name)
-            ->line('Vous avez des message non lu')
+            ->line('Vous avez '.$this->messageCount.' message(s) non lu')
             ->action('Aller au message', URL::route('chat'))
             ->line('Merci d\'utiliser notre application!');
     }

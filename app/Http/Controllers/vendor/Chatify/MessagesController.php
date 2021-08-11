@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\vendor\Chatify;
 
 use App\Models\BlockedUser;
+use App\Models\ChMessage;
 use App\Models\Notification;
 use App\Notifications\AdvisePassPhrase;
 use App\Notifications\ReportedUser;
@@ -16,6 +17,7 @@ use Chatify\Facades\ChatifyMessenger as Chatify;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request as FacadesRequest;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 
@@ -122,11 +124,40 @@ class MessagesController extends Controller
      */
     public function send(Request $request)
     {
+
         // default variables
         $error = (object)[
             'status' => 0,
             'message' => null
         ];
+
+        /** user blocked */
+//        $usersblocked = [];
+//        foreach (auth()->user()->BlockedUser()->get() as $blockedUser) {
+//            $usersblocked [] = User::find($blockedUser->user_blocked_id);
+//        }
+
+//        if (count($usersblocked) > 0){
+//
+//            /** check if user reciever is blocked */
+//            if (!in_array(User::find($request['id']), $usersblocked)) {
+//                $error->status = 1;
+//                $error->message = "Vous avez bloqué ce contact!";
+//            }
+//        }
+
+        if (BlockedUser::where('user_id',$request['id'])->where('user_blocked_id',Auth::id())->exists()){
+            $error->status = 1;
+            $error->message = "vous ne pouvez pas envoyer de message à cette personne!";
+        }
+
+        if (BlockedUser::where('user_id',Auth::id())->where('user_blocked_id',$request['id'])->exists()){
+            $error->status = 1;
+            $error->message = "Vous avez bloqué ce contact!";
+        }
+
+
+
         $attachment = null;
         $attachment_title = null;
 
@@ -144,6 +175,7 @@ class MessagesController extends Controller
                     // get attachment name
                     $attachment_title = $file->getClientOriginalName();
                     // upload attachment and store the new name
+//                    Storage::disk('local')->put("public/" . config('chatify.attachments.folder'), $attachment);
                     $attachment = Str::uuid() . "." . $file->getClientOriginalExtension();
                     $file->storeAs("public/" . config('chatify.attachments.folder'), $attachment);
                 } else {
@@ -164,6 +196,7 @@ class MessagesController extends Controller
                 'type' => $request['type'],
                 'from_id' => Auth::user()->id,
                 'to_id' => $request['id'],
+                'broadcast_message_id' => null,
                 'body' => htmlentities(trim($request['message']), ENT_QUOTES, 'UTF-8'),
                 'attachment' => ($attachment) ? json_encode((object)[
                     'new_name' => $attachment,
@@ -569,6 +602,7 @@ class MessagesController extends Controller
             'fullTime' => $msg->created_at,
             'viewType' => ($msg->from_id == Auth::user()->id) ? 'sender' : 'default',
             'seen' => $msg->seen,
+            'broadcast_message_id' => $msg->broadcast_message_id,
         ];
     }
 
@@ -598,6 +632,31 @@ class MessagesController extends Controller
         // send the response
         return Response::json([
             'reported' => $reported ? 1 : 0,
+        ], 200);
+    }
+
+    /**
+     * create a new message to database
+     *
+     * @param array $data
+     * @return void
+     */
+    public function newMessage($data){
+        $message = new ChMessage();
+        $message->id = $data['id'];
+        $message->type = $data['type'];
+        $message->from_id = $data['from_id'];
+        $message->to_id = $data['to_id'];
+        $message->body = $data['body'];
+        $message->attachment = $data['attachment'];
+        $message->save();
+    }
+
+    public function unreadMessageForUser(Request $request)
+    {
+        $unreadMessage = ChMessage::where('to_id', Auth::user()->id)->where('seen', 0)->count();
+        return Response::json([
+            'unreadMessage' => $unreadMessage,
         ], 200);
     }
 }
