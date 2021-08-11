@@ -3,8 +3,10 @@
 namespace App\Console;
 
 use App\Http\Controllers\ScheduledMessage;
+use App\Http\Controllers\ScheduleUnreadMessage;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use PhpParser\Node\Expr\New_;
 
 class Kernel extends ConsoleKernel
 {
@@ -28,6 +30,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
 
         $schedule->call(new ScheduledMessage())->everyMinute();
+        $schedule->call(new ScheduleUnreadMessage())->everyTwoHours();
 //        $schedule->call(new NotRespondedMessageController())->everyMinute();
     }
 
