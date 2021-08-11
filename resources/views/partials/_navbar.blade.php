@@ -5,7 +5,7 @@
             <a href="{{ route('dashboard.exprimer') }}"><i class="bi tabbi2 bi-plus-square-fill  hideit"></i></a>
         </div>
         <div class="tab-bar chatpage">
-            <a href="{{ route('chat') }}"><i class="bi tabbi1 bi-envelope"></i>@if($countUnseenMessages != 0)<div class="notifier">
+            <a id="countUnseenMessages" href="{{ route('chat') }}"><i class="bi tabbi1 bi-envelope"></i>@if($countUnseenMessages != 0)<div class="notifier">
                     <p>{{$countUnseenMessages}}</p>
                 </div>@endif</a>
             <a href="{{ route('chat') }}"><i class="bi tabbi2 bi-envelope-fill  hideit"></i></a>
