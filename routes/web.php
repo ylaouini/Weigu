@@ -42,6 +42,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::post('chat/blockUser',[\App\Http\Controllers\vendor\Chatify\MessagesController::class,'blockUser'])->name('block-user');
     Route::post('chat/reportUser',[\App\Http\Controllers\vendor\Chatify\MessagesController::class,'reportUser'])->name('report-user');
+    Route::post('chat/unreadMessage',[\App\Http\Controllers\vendor\Chatify\MessagesController::class,'unreadMessageForUser']);
 });
 
 
@@ -50,4 +51,4 @@ Route::post('/login/confirm',[PassPhraseController::class,'store'])->name('login
 Route::get('/login/magic/{user}',[MagicLinkController::class,'confirm'])->name('login.magiclink');
 
 
-Route::get('testMessage',\App\Http\Controllers\ScheduledMessage::class);
+Route::get('testMessage',\App\Http\Controllers\ScheduleUnreadMessage::class);
