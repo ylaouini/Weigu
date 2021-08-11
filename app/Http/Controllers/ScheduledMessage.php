@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\TotalResponseChanged;
 use App\Mail\ScheduledBroadcastMessage;
 use App\Models\BroadcastMessage;
 use App\Models\ChMessage;
@@ -23,7 +24,7 @@ class ScheduledMessage extends Controller
     public function __invoke(Request $request)
     {
         $messages = $this->getActiveMessages();
-        $everyMinutes = 2;
+        $everyMinutes = 720;
 
         foreach ($messages as $message) {
             $twelveHoursPassed = $this->sendNow($message, $everyMinutes);
@@ -56,8 +57,8 @@ class ScheduledMessage extends Controller
                  */
                 $message->status = 0;
                 $message->update();
-//                $totalResponses = Podcast_message::where('status','0')->count();
-//                event(new TotalResponseChanged($totalResponses));
+                $totalResponses = BroadcastMessage::where('status','0')->count();
+                event(new TotalResponseChanged($totalResponses));
             }
         }
 
@@ -113,7 +114,7 @@ class ScheduledMessage extends Controller
         $usersAlreadyHaveMessage = [];
 
         /** number of users we want to mail */
-        $usersNum = 2;
+        $usersNum = 15;
         /** select random users */
         $i = 0;
         /** array of randomly selected users */
@@ -154,6 +155,7 @@ class ScheduledMessage extends Controller
 
     private function sendMessage(BroadcastMessage $broadcastMessage, User $reciever)
     {
+
         $attachment = null;
         $attachment_title = null;
         // send to database
