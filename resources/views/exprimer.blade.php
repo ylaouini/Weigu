@@ -236,7 +236,7 @@
         // document.getElementById('messageWow').innerHTML = data.message;
         // document.getElementById('userWow').innerHTML = data.name;
 
-        var message ='Ano: '+ data.message;
+        var message ='Ano: '+ data.message.substring(0,50) + '...';
         var type = 'success';
         // warning,danger,success,default
         var duration = 9500;
