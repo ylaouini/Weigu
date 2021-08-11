@@ -15,12 +15,14 @@ class ScheduleUnreadMessage extends Controller
         $unreadMessages = DB::table('ch_messages')
             ->select('to_id',DB::raw('count(seen) as total_unread'))
             ->where('seen',0)
+            ->where('email_sent',0)
             ->groupBy('to_id')
             ->get();
 
         foreach ($unreadMessages as $item){
             $user = User::find($item->to_id);
-            $user->notify(new UnreadMessage());
+            $user->notify(new UnreadMessage($item->total_unread));
+            ChMessage::where('to_id',$item->to_id)->update(['email_sent' => true]);
         }
     }
 }
