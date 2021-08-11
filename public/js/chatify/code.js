@@ -946,12 +946,12 @@ function blockUser(id) {
             });
         },
         success: (data) => {
-            // delete contact from the list
-            $(".listOfContacts")
-                .find(".messenger-list-item[data-contact=" + id + "]")
-                .remove();
-            // refresh info
-            IDinfo(id, messenger.split("_")[0]);
+            // // delete contact from the list
+            // $(".listOfContacts")
+            //     .find(".messenger-list-item[data-contact=" + id + "]")
+            //     .remove();
+            // // refresh info
+            // IDinfo(id, messenger.split("_")[0]);
 
             data.blocked ? "" : console.error("Error occured!");
 
@@ -1153,6 +1153,26 @@ $(document).ready(function() {
   // make favorites card dragable on click to slide.
   hScroller(".messenger-favorites");
 
+  // update unseen message
+    // click action for list item [user/group]
+    $("body").on("click", ".messenger-list-item", function() {
+        $.ajax({
+            url: url + "/unreadMessage",
+            method: "POST",
+            data: { _token: access_token},
+            dataType: "JSON",
+            success: (data) => {
+                if (data.unreadMessage > 0){
+                    document.getElementById('countUnseenMessages').innerHTML =data.unreadMessage
+                }
+            },
+            error: () => {
+                console.error("Server error, check your response");
+            },
+        });
+
+    });
+
   // click action for list item [user/group]
   $("body").on("click", ".messenger-list-item", function() {
     if (
@@ -1165,7 +1185,7 @@ $(document).ready(function() {
         if (newWindowWidth < 1024) {
           $(".myfooter").hide();
         }
-     
+
     }
     messenger = $(this)
       .find("p[data-id]")
