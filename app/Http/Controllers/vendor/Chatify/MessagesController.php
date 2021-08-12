@@ -19,10 +19,23 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Pusher\Pusher;
 
 
 class MessagesController extends Controller
 {
+
+    public $pusher;
+
+    public function __construct()
+    {
+        $this->pusher = new Pusher(
+            config('chatify.pusher.key'),
+            config('chatify.pusher.secret'),
+            config('chatify.pusher.app_id'),
+            config('chatify.pusher.options'),
+        );
+    }
     /**
      * Authinticate the connection for pusher
      *
@@ -156,8 +169,6 @@ class MessagesController extends Controller
             $error->message = "Vous avez bloqué ce contact!";
         }
 
-
-
         $attachment = null;
         $attachment_title = null;
 
@@ -205,10 +216,10 @@ class MessagesController extends Controller
             ]);
 
             // fetch message to send it with the response
-            $messageData = Chatify::fetchMessage($messageID);
+            $messageData = $this->fetchMessage($messageID);
 
             // send to user using pusher
-            Chatify::push('private-chatify', 'messaging', [
+            $this->push('private-chatify', 'messaging', [
                 'from_id' => Auth::user()->id,
                 'to_id' => $request['id'],
                 'message' => Chatify::messageCard($messageData, 'default')
@@ -659,4 +670,19 @@ class MessagesController extends Controller
             'unreadMessage' => $unreadMessage,
         ], 200);
     }
+
+    /**
+     * Trigger an event using Pusher
+     *
+     * @param string $channel
+     * @param string $event
+     * @param array $data
+     * @return void
+     */
+    public function push($channel, $event, $data)
+    {
+        return $this->pusher->trigger($channel, $event, $data);
+    }
+
+
 }
