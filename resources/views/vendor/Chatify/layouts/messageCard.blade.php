@@ -2,7 +2,8 @@
 @if($viewType == 'default')
     @if($from_id != $to_id)
         <div class="message-card" data-id="{{ $id }}">
-                <p @if($broadcast_message_id != null) style="background: #00b050;color: #fff" @endif>{!! ($message == null && $attachment != null && @$attachment[2] != 'file') ? $attachment[1] : nl2br($message) !!}
+            @if($broadcast_message_id == null)
+                <p>{!! ($message == null && $attachment != null && @$attachment[2] != 'file') ? $attachment[1] : nl2br($message) !!}
                     <sub title="{{ $fullTime }}">{{ $time }}</sub>
                     {{-- If attachment is a file --}}
                     @if(@$attachment[2] == 'file')
@@ -11,6 +12,17 @@
                             <span class="fas fa-file"></span> {{$attachment[1]}}</a>
                     @endif
                 </p>
+            @else
+                <p style="background: #1f2cea;color: #fff">{!! ($message == null && $attachment != null && @$attachment[2] != 'file') ? $attachment[1] : nl2br('Question : '.$message) !!}
+                    <sub title="{{ $fullTime }}">{{ $time }}</sub>
+                    {{-- If attachment is a file --}}
+                    @if(@$attachment[2] == 'file')
+                        <a href="{{ route(config('chatify.attachments.download_route_name'),['fileName'=>$attachment[0]]) }}"
+                           style="color: #595959;" class="file-download">
+                            <span class="fas fa-file"></span> {{$attachment[1]}}</a>
+                    @endif
+                </p>
+            @endif
         </div>
         {{-- If attachment is an image --}}
         @if(@$attachment[2] == 'image')
