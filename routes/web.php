@@ -57,3 +57,9 @@ Route::view('/about', 'about');
 Route::view('/algorithme', 'algorithme');
 Route::view('/informations', 'informations')->name('informations');
 
+Route::get('/notification', function () {
+    $user = \App\Models\User::find(1);
+
+    return (new \App\Notifications\AdvisePassPhrase('hello-yassine-laouini'))
+        ->toMail($user);
+});
