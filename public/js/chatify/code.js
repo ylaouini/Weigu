@@ -1201,6 +1201,10 @@ $(document).ready(function() {
         .attr("data-action") == "1"
     ) {
       $(".messenger-listView").hide();
+        var newWindowWidth = $(window).width();
+        if (newWindowWidth < 1024) {
+            $(".myfooter").hide();
+        }
     }
     messenger =
       "user_" +

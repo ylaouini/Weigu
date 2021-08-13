@@ -36,7 +36,7 @@
 
                     {{-- Favorites --}}
                     <div class="favorites-section">
-                        <p class="messenger-title">Favorites</p>
+                        <p class="messenger-title">Favoris</p>
                         <div class="messenger-favorites app-scroll-thin"></div>
                     </div>
 

@@ -51,7 +51,7 @@ class BroadcastMessage extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->from('noreply@weigu-app.com','Weigu')
-            ->subject('Nouveau question')
+            ->subject('Nouvelle question')
             ->greeting('Salut '.$this->receiver->name)
             ->line('Vous avez reçu un nouveau question de '.$this->sender.':')
             ->line($this->message->message)
