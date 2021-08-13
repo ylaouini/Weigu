@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 </head>
 
-<body class="d-flex flex-column justify-content-between josefin josefin">
+<body class="d-flex flex-column justify-content-between josefin">
 <div class="grey-bg scroll">
     <div class="my-container">
         <h1 class="pagelogo">Weigu</h1>

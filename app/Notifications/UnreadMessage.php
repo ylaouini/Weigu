@@ -44,9 +44,9 @@ class UnreadMessage extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->from('noreply@weigu-app.com','Weigu')
-            ->subject('Nouveau message')
+            ->subject('Nouveau message privé')
             ->greeting('Salut '.$notifiable->name)
-            ->line('Vous avez '.$this->messageCount.' message(s) non lu')
+            ->line('Tu as '.$this->messageCount.' message(s) non lu')
             ->action('Aller au message', URL::route('chat'))
             ->line('Merci d\'utiliser notre application!');
     }

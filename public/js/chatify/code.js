@@ -1201,6 +1201,10 @@ $(document).ready(function() {
         .attr("data-action") == "1"
     ) {
       $(".messenger-listView").hide();
+        var newWindowWidth = $(window).width();
+        if (newWindowWidth < 1024) {
+            $(".myfooter").hide();
+        }
     }
     messenger =
       "user_" +
@@ -1216,6 +1220,7 @@ $(document).ready(function() {
   });
   $(".show-listView").on("click", function() {
     $(".messenger-listView").show();
+    $(".myfooter").show();
   });
 
   // click action for [add to favorite] button.

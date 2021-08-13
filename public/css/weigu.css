@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
@@ -27812,10 +27813,6 @@ p {
     border-right: none;
 }
 
-.exprimer {
-    font-family: "Josefin Sans", sans-serif;
-}
-
 .footer {
     bottom: 0;
     width: 100%;
@@ -28249,7 +28246,6 @@ h4 {
 
 .imageslider .slide h2 {
     z-index: 1;
-    font-family: "Josefin Sans", sans-serif;
     position: absolute;
     padding: 3vw;
     color: #fff;
@@ -28267,7 +28263,6 @@ h4 {
 
 .contact-section h5 {
     font-weight: 400;
-    font-family: "Josefin Sans", sans-serif;
 }
 
 .contact-pic img {
@@ -28779,7 +28774,6 @@ p.notif-parag a span {
 
 .navigatebuttons .navigatebutton {
     padding: 4px 15px;
-    font-family: "Josefin Sans";
     font-size: 0.9rem;
 }
 
@@ -28788,10 +28782,12 @@ p.notif-parag a span {
     font-size: 16px;
 }
 
+/* .josefin {
+    font-family: 'Roboto', sans-serif;
+} */
 .josefin {
     font-family: "Josefin Sans";
 }
-
 .navigatebutton.active {
     background-color: #707070;
     border-radius: 20px;

@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="{{ URL::asset('images/favicon.ico') }}" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     <title>{{ config('app.name', 'MyApp') }}</title>
     <link href="{{ asset('css/weigu.css') }}" rel="stylesheet">
