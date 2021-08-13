@@ -43,20 +43,15 @@ class AdvisePassPhrase extends Notification
      */
     public function toMail($notifiable)
     {
+
+
         return (new MailMessage)
             ->from('noreply@weigu-app.com','Weigu')
             ->subject('Votre code de connexion pour ' . config('app.name'))
-            ->greeting('Salut!')
-            ->line('Voici votre mot de passe de connexion qui est valable pour les 15 prochaines minutes')
-            ->line($this->passphrase)
+            ->markdown('mail.advicePassPhrase',[
+                'passphrase' => $this->passphrase
+            ]);
 
-//            ->line('Vous pouvez aussi cliquer sur le bouton ci-dessous pour accéder au site')
-//            ->action('Confirm', URL::temporarySignedRoute(
-//                'login.magiclink',
-//                now()->addMinutes(15),
-//                ['user' => $notifiable->id, 'code' => $this->passphrase]
-//            ))
-            ->line('Merci d\'utiliser notre application!');
     }
 
     /**
