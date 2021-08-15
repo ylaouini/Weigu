@@ -49,14 +49,22 @@ class BroadcastMessage extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
+        $url = URL::route('chat');
+
         return (new MailMessage)
             ->from('noreply@weigu-app.com','Weigu')
             ->subject('Nouvelle question')
             ->greeting('Salut '.$this->receiver->name)
-            ->line('Vous avez reçu un nouvelle question de '.$this->sender.':')
-            ->line($this->message->message)
-            ->action('Aller au message', URL::route('chat'))
-            ->line('Merci d\'utiliser notre application!');
+            ->markdown('mail.broadcastMessage',[
+                'sender' => $this->sender,
+                'url' => $url,
+                'message' => $this->message->message,
+                'name' => $notifiable->name
+            ]);
+//            ->line('Vous avez reçu un nouvelle question de '.$this->sender.':')
+//            ->line($this->message->message)
+//            ->action('Aller au message', URL::route('chat'))
+//            ->line('Merci d\'utiliser notre application!');
     }
 
     /**
