@@ -5,7 +5,7 @@ Vous avez reçu un nouvelle question de {{$sender}}
 
 <div style="border-left-style: dotted;
 border-left: thick green;
-border-left: 0.2rem solid;
+border-left: 2px solid #edeff1;
     padding: .75em;">
         {{$message}}
 </div>
