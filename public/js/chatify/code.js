@@ -374,6 +374,125 @@ function IDinfo(id, type) {
 
 /**
  *-------------------------------------------------------------
+ * Delete Message
+ *-------------------------------------------------------------
+ */
+function deleteMessage(msg_id) {
+    $.ajax({
+        url: url + '/deleteMessage',
+        method: 'POST',
+        data: {
+            '_token': access_token,
+            'id': msg_id
+        },
+        dataType: 'JSON',
+        beforeSend: () => {
+            // hide delete modal
+            app_modal({
+                show: false,
+                name: 'delete-message',
+            });
+            // Show waiting alert modal
+            app_modal({
+                show: true,
+                name: 'alert',
+                buttons: false,
+                body: loadingSVG('32px'),
+            });
+        },
+        success: (data) => {
+            // remove message from list of messages
+            $('.messages').find('.message-card[data-id=' + msg_id + ']').remove();
+            // // refresh info
+            // IDinfo(id, messenger.split('_')[0]);
+            data.deleted ? '' : console.error('Error occured!');
+
+            // Hide waiting alert modal
+            app_modal({
+                show: false,
+                name: 'alert',
+                buttons: true,
+                body: '',
+            });
+        },
+        error: () => {
+            console.error('Server error, check your response');
+        }
+    });
+}
+
+/* -------------- Delete Message UI ---------------- */
+
+$(function() {
+    $.contextMenu({
+        selector: '.context-menu-one',
+        callback: function(key, options) {
+            var m = "clicked: " + key;
+            window.console && console.log(m) || alert(m);
+        },
+        items: {
+            "edit": {name: "Edit", icon: "edit"},
+            "cut": {name: "Cut", icon: "cut"},
+            copy: {name: "Copy", icon: "copy"},
+            "paste": {name: "Paste", icon: "paste"},
+            "delete": {name: "Delete", icon: "delete"},
+            "sep1": "---------",
+            "quit": {name: "Quit", icon: function(){
+                    return 'context-menu-icon context-menu-icon-quit';
+                }}
+        }
+    });
+
+    $('.context-menu-one').on('click', function(e){
+        console.log('clicked', this);
+    })
+});
+// $(function() {
+//     $.contextMenu({
+//         selector: '.context-menu-delete',
+//         build: function($triggerElement, e) {
+//             e.preventDefault();
+//             return {
+//                 callback: function (key, options) {
+//                     app_modal({
+//                         name: `${key}-message`,
+//                         data: options.$trigger.parent().data('id')
+//                     });
+//                 },
+//                 items: {
+//                     "delete": {
+//                         name: "Supprimer ce message",
+//                         icon: "fas fa-trash",
+//                         className: 'contextmenu-item-delete'
+//                     },
+//                 }
+//             }
+//         }
+//     });
+//
+//     $('.context-menu-delete').on('click', function (e) { });
+//
+//     // delete modal [delete button]
+//     $('.app-modal[data-name=delete-message]').find('.app-modal-footer .delete').on('click', function () {
+//         let msg_id = $('.app-modal-card[data-name=delete-message]').attr('data-modal');
+//         deleteMessage(msg_id);
+//         app_modal({
+//             show: false,
+//             name: 'delete-message',
+//         });
+//     });
+//     // delete modal [cancel button]
+//     $('.app-modal[data-name=delete-message]').find('.app-modal-footer .cancel').on('click', function () {
+//         app_modal({
+//             show: false,
+//             name: 'delete-message',
+//         });
+//     });
+// });
+
+
+/**
+ *-------------------------------------------------------------
  * Send message function
  *-------------------------------------------------------------
  */
@@ -640,6 +759,20 @@ function makeSeen(status) {
     data: { _token: access_token, id: messenger.split("_")[1] },
     dataType: "JSON",
     success: (data) => {
+        $.ajax({
+            url: url + "/unreadMessage",
+            method: "POST",
+            data: { _token: access_token},
+            dataType: "JSON",
+            success: (data) => {
+                // if (data.unreadMessage > 0){
+                    document.getElementById('countUnseenMessages').innerHTML =data.unreadMessage
+                // }
+            },
+            error: () => {
+                console.error("Server error, check your response");
+            },
+        });
       console.log("[seen] Messages seen - " + messenger.split("_")[1]);
     },
   });
@@ -1152,26 +1285,6 @@ $(document).ready(function() {
 
   // make favorites card dragable on click to slide.
   hScroller(".messenger-favorites");
-
-  // update unseen message
-    // click action for list item [user/group]
-    $("body").on("click", ".messenger-list-item", function() {
-        $.ajax({
-            url: url + "/unreadMessage",
-            method: "POST",
-            data: { _token: access_token},
-            dataType: "JSON",
-            success: (data) => {
-                if (data.unreadMessage > 0){
-                    document.getElementById('countUnseenMessages').innerHTML =data.unreadMessage
-                }
-            },
-            error: () => {
-                console.error("Server error, check your response");
-            },
-        });
-
-    });
 
   // click action for list item [user/group]
   $("body").on("click", ".messenger-list-item", function() {
