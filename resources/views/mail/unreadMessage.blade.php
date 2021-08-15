@@ -4,7 +4,13 @@
 Tu as {{$messageCount}} message(s) non lu
 
 @foreach($messages as $message)
-    {{\App\Models\User::find($message->from_id)->name}} | {{$message->body}}
+<div style="border-left-style: dotted;
+border-left: thick green;
+border-left: 0.2rem solid #edf2f7;
+    padding: .75em;">
+        {{\App\Models\User::find($message->from_id)->name}} | {{$message->body}}
+</div>
+
 @endforeach
 
 @component('mail::button', ['url' => $url])
