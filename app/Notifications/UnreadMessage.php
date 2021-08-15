@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\ChMessage;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -21,6 +22,7 @@ class UnreadMessage extends Notification implements ShouldQueue
     public function __construct($messageCount)
     {
         $this->messageCount = $messageCount;
+
     }
 
     /**
@@ -43,7 +45,7 @@ class UnreadMessage extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         $url = URL::route('chat');
-
+        $messages = ChMessage::where('to_id',$notifiable->id)->where('seen',0)->where('email_sent',0)->get();
         return (new MailMessage)
             ->subject('Nouveau message privé')
             ->from('noreply@weigu-app.com','Weigu')
@@ -51,6 +53,7 @@ class UnreadMessage extends Notification implements ShouldQueue
                 'messageCount' => $this->messageCount,
                 'name' => $notifiable->name,
                 'url' => $url,
+                'messages' => $messages
             ]);
 //        return (new MailMessage)
 //            ->from('noreply@weigu-app.com','Weigu')

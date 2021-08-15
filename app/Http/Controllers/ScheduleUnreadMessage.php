@@ -22,7 +22,6 @@ class ScheduleUnreadMessage extends Controller
         foreach ($unreadMessages as $item){
             $user = User::find($item->to_id);
             if ($user->notify_me_message == 1){
-
             $user->notify(new UnreadMessage($item->total_unread));
             ChMessage::where('to_id',$item->to_id)->update(['email_sent' => true]);
             }

@@ -3,6 +3,10 @@
 
 Tu as {{$messageCount}} message(s) non lu
 
+@foreach($messages as $message)
+    {{\App\Models\User::find($message->from_id)->name}} | {{$message->body}}
+@endforeach
+
 @component('mail::button', ['url' => $url])
 Aller au message
 @endcomponent
