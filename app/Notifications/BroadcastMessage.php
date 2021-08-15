@@ -53,7 +53,7 @@ class BroadcastMessage extends Notification implements ShouldQueue
             ->from('noreply@weigu-app.com','Weigu')
             ->subject('Nouvelle question')
             ->greeting('Salut '.$this->receiver->name)
-            ->line('Vous avez reçu un nouveau question de '.$this->sender.':')
+            ->line('Vous avez reçu un nouvelle question de '.$this->sender.':')
             ->line($this->message->message)
             ->action('Aller au message', URL::route('chat'))
             ->line('Merci d\'utiliser notre application!');

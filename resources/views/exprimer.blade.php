@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="utf-8">
@@ -84,6 +84,7 @@
 
 </div>
 @include('partials._navbar')
+@include('cookieConsent::index')
 </body>
 
 

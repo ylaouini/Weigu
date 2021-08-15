@@ -43,15 +43,12 @@ class AdvisePassPhrase extends Notification
      */
     public function toMail($notifiable)
     {
-
-
         return (new MailMessage)
             ->from('noreply@weigu-app.com','Weigu')
             ->subject('Votre code de connexion pour ' . config('app.name'))
             ->markdown('mail.advicePassPhrase',[
                 'passphrase' => $this->passphrase
             ]);
-
     }
 
     /**
