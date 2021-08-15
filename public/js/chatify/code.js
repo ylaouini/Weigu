@@ -423,71 +423,48 @@ function deleteMessage(msg_id) {
 
 /* -------------- Delete Message UI ---------------- */
 
-$(function() {
+
+// $(function() {
     $.contextMenu({
-        selector: '.context-menu-one',
-        callback: function(key, options) {
-            var m = "clicked: " + key;
-            window.console && console.log(m) || alert(m);
-        },
-        items: {
-            "edit": {name: "Edit", icon: "edit"},
-            "cut": {name: "Cut", icon: "cut"},
-            copy: {name: "Copy", icon: "copy"},
-            "paste": {name: "Paste", icon: "paste"},
-            "delete": {name: "Delete", icon: "delete"},
-            "sep1": "---------",
-            "quit": {name: "Quit", icon: function(){
-                    return 'context-menu-icon context-menu-icon-quit';
-                }}
+        selector: '.context-menu-delete',
+        build: function($triggerElement, e) {
+            e.preventDefault();
+            return {
+                callback: function (key, options) {
+                    app_modal({
+                        name: `${key}-message`,
+                        data: options.$trigger.parent().data('id')
+                    });
+                },
+                items: {
+                    "delete": {
+                        name: "Supprimer ce message",
+                        icon: "fas fa-trash",
+                        className: 'contextmenu-item-delete'
+                    },
+                }
+            }
         }
     });
 
-    $('.context-menu-one').on('click', function(e){
-        console.log('clicked', this);
-    })
-});
-// $(function() {
-//     $.contextMenu({
-//         selector: '.context-menu-delete',
-//         build: function($triggerElement, e) {
-//             e.preventDefault();
-//             return {
-//                 callback: function (key, options) {
-//                     app_modal({
-//                         name: `${key}-message`,
-//                         data: options.$trigger.parent().data('id')
-//                     });
-//                 },
-//                 items: {
-//                     "delete": {
-//                         name: "Supprimer ce message",
-//                         icon: "fas fa-trash",
-//                         className: 'contextmenu-item-delete'
-//                     },
-//                 }
-//             }
-//         }
-//     });
-//
-//     $('.context-menu-delete').on('click', function (e) { });
-//
-//     // delete modal [delete button]
-//     $('.app-modal[data-name=delete-message]').find('.app-modal-footer .delete').on('click', function () {
-//         let msg_id = $('.app-modal-card[data-name=delete-message]').attr('data-modal');
-//         deleteMessage(msg_id);
-//         app_modal({
-//             show: false,
-//             name: 'delete-message',
-//         });
-//     });
-//     // delete modal [cancel button]
-//     $('.app-modal[data-name=delete-message]').find('.app-modal-footer .cancel').on('click', function () {
-//         app_modal({
-//             show: false,
-//             name: 'delete-message',
-//         });
-//     });
+    $('.context-menu-delete').on('click', function (e) { });
+
+    // delete modal [delete button]
+    $('.app-modal[data-name=delete-message]').find('.app-modal-footer .delete').on('click', function () {
+        let msg_id = $('.app-modal-card[data-name=delete-message]').attr('data-modal');
+        deleteMessage(msg_id);
+        app_modal({
+            show: false,
+            name: 'delete-message',
+        });
+    });
+    // delete modal [cancel button]
+    $('.app-modal[data-name=delete-message]').find('.app-modal-footer .cancel').on('click', function () {
+        app_modal({
+            show: false,
+            name: 'delete-message',
+        });
+    });
 // });
 
 
@@ -766,8 +743,14 @@ function makeSeen(status) {
             dataType: "JSON",
             success: (data) => {
                 // if (data.unreadMessage > 0){
-                    document.getElementById('countUnseenMessages').innerHTML =data.unreadMessage
+
                 // }
+                if (data.unreadMessage == 0){
+                    $(".notifier").hide();
+                }else {
+                    document.getElementById('countUnseenMessages').innerHTML =data.unreadMessage
+                    $(".notifier").show();
+                }
             },
             error: () => {
                 console.error("Server error, check your response");

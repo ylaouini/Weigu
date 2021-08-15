@@ -4,6 +4,7 @@ use App\Http\Controllers\BroadcastMessageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MagicLinkController;
 use App\Http\Controllers\PassPhraseController;
+use App\Http\Controllers\vendor\Chatify\MessagesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,9 +41,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Chatify
 
-    Route::post('chat/blockUser',[\App\Http\Controllers\vendor\Chatify\MessagesController::class,'blockUser'])->name('block-user');
-    Route::post('chat/reportUser',[\App\Http\Controllers\vendor\Chatify\MessagesController::class,'reportUser'])->name('report-user');
-    Route::post('chat/unreadMessage',[\App\Http\Controllers\vendor\Chatify\MessagesController::class,'unreadMessageForUser']);
+    Route::post('chat/blockUser',[MessagesController::class,'blockUser'])->name('block-user');
+    Route::post('chat/reportUser',[MessagesController::class,'reportUser'])->name('report-user');
+    Route::post('chat/unreadMessage',[MessagesController::class,'unreadMessageForUser']);
+    // delete Message
+    Route::post('chat/deleteMessage', [MessagesController::class, 'deleteMessage'])->name('messages.delete');
+
 
     Route::view('/privacy', 'privacy');
     Route::view('/terms-and-conditions', 'terms-conditions');
@@ -59,7 +63,8 @@ Route::view('/informations', 'informations')->name('informations');
 
 Route::get('/notification', function () {
     $user = \App\Models\User::find(1);
+    $message = \App\Models\BroadcastMessage::find(1);
 
-    return (new \App\Notifications\AdvisePassPhrase('hello-yassine-laouini'))
+    return (new \App\Notifications\BroadcastMessage($user,'yassine',$message))
         ->toMail($user);
 });

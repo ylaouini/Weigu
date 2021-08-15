@@ -145,19 +145,6 @@ class MessagesController extends Controller
         ];
 
         /** user blocked */
-//        $usersblocked = [];
-//        foreach (auth()->user()->BlockedUser()->get() as $blockedUser) {
-//            $usersblocked [] = User::find($blockedUser->user_blocked_id);
-//        }
-
-//        if (count($usersblocked) > 0){
-//
-//            /** check if user reciever is blocked */
-//            if (!in_array(User::find($request['id']), $usersblocked)) {
-//                $error->status = 1;
-//                $error->message = "Vous avez bloqué ce contact!";
-//            }
-//        }
 
         if (BlockedUser::where('user_id',$request['id'])->where('user_blocked_id',Auth::id())->exists()){
             $error->status = 1;
@@ -683,6 +670,33 @@ class MessagesController extends Controller
     {
         return $this->pusher->trigger($channel, $event, $data);
     }
+
+    /**
+     * Delete Message from conversation
+     *
+     * delete single message
+     * @param Request $request
+     * @return Response whether deletion was successful
+     */
+    public function deleteMessage(Request $request)
+    {
+
+        try {
+            $msg = \App\Models\ChMessage::find($request['id']);
+            // delete from database
+            $msg->delete();
+            $delete = 1;
+        } catch (Exception $e) {
+            $delete = 0;
+        }
+
+        // send the response
+        return Response::json([
+            'deleted' => $delete ? 1 : 0,
+        ], 200);
+    }
+
+
 
 
 }

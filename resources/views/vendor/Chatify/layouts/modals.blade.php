@@ -25,7 +25,7 @@
             <div class="app-modal-header">Bloquer cet utilisateur?</div>
 {{--            <div class="app-modal-body">You can not undo this action</div>--}}
             <div class="app-modal-footer">
-                <a href="javascript:void(0)" class="app-btn cancel">Cancel</a>
+                <a href="javascript:void(0)" class="app-btn ml-0 cancel">Cancel</a>
                 <a href="javascript:void(0)" class="app-btn a-btn-danger block">block</a>
             </div>
         </div>
@@ -39,7 +39,7 @@
             <div class="app-modal-header">Signaler cet utilisateur?</div>
             {{--            <div class="app-modal-body">You can not undo this action</div>--}}
             <div class="app-modal-footer">
-                <a href="javascript:void(0)" class="app-btn cancel">Cancel</a>
+                <a href="javascript:void(0)" class="app-btn ml-0 cancel">Cancel</a>
                 <a href="javascript:void(0)" class="app-btn a-btn-danger block">Signale</a>
             </div>
         </div>
@@ -52,7 +52,7 @@
               <div class="app-modal-header"></div>
               <div class="app-modal-body"></div>
               <div class="app-modal-footer">
-                  <a href="javascript:void(0)" class="app-btn cancel">Cancel</a>
+                  <a href="javascript:void(0)" class="app-btn ml-0 cancel">Cancel</a>
               </div>
           </div>
       </div>
@@ -107,3 +107,16 @@
           </div>
       </div>
   </div>
+{{-- ---------------------- Delete Message Modal ---------------------- --}}
+<div class="app-modal" data-name="delete-message">
+    <div class="app-modal-container">
+        <div class="app-modal-card" data-name="delete-message" data-modal='0'>
+            <div class="app-modal-header">Etes-vous sur de vouloir supprimer ce message ?</div>
+            <div class="app-modal-body">Vous ne pouvez pas annuler cette action</div>
+            <div class="app-modal-footer">
+                <a href="javascript:void(0)" class="app-btn ml-0 cancel">Annuler</a>
+                <a href="javascript:void(0)" class="app-btn a-btn-danger delete">Supprimer</a>
+            </div>
+        </div>
+    </div>
+</div>
