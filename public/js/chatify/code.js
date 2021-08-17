@@ -1322,6 +1322,7 @@ $(document).ready(function() {
   // click action for [add to favorite] button.
   $(".add-to-favorite").on("click", function() {
     star(messenger.split("_")[1]);
+      getFavoritesList();
   });
 
   // calling Css Media Queries
