@@ -40,7 +40,14 @@
 {{-- -------------------- Sender card (owner) -------------------- --}}
 @if($viewType == 'sender')
     <div class="message-card mc-sender" data-id="{{ $id }}">
-        <p class="context-menu-delete">{!! ($message == null && $attachment != null && @$attachment[2] != 'file') ? $attachment[1] : nl2br($message) !!}
+        <div class="dropdown">
+            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a onclick="deleteMessage({{$id}})" class="dropdown-item" data-id="{{ $id }}" href="#">Supprimer ce message</a></li>
+            </ul>
+        </div>
+        <p class="context-menu-delete ">{!! ($message == null && $attachment != null && @$attachment[2] != 'file') ? $attachment[1] : nl2br($message) !!}
             <sub title="{{ $fullTime }}" class="message-time">
                 <span class="fas fa-{{ $seen > 0 ? 'check-double' : 'check' }} seen"></span> {{ $time }}</sub>
             {{-- If attachment is a file --}}
@@ -50,6 +57,7 @@
                     <span class="fas fa-file"></span> {{$attachment[1]}}</a>
             @endif
         </p>
+
     </div>
     {{-- If attachment is an image --}}
     @if(@$attachment[2] == 'image')

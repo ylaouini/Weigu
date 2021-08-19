@@ -61,10 +61,10 @@ Route::view('/about', 'about');
 Route::view('/algorithme', 'algorithme');
 Route::view('/informations', 'informations')->name('informations');
 
-Route::get('/notification', function () {
-    $user = \App\Models\User::find(1);
-    $message = \App\Models\BroadcastMessage::find(1);
-
-    return (new \App\Notifications\BroadcastMessage($user,'yassine',$message))
-        ->toMail($user);
-});
+//Route::get('/notification', function () {
+//    $user = \App\Models\User::find(2);
+//    $message = \App\Models\BroadcastMessage::find(1);
+//
+//    return (new \App\Notifications\UnreadMessage(20))
+//        ->toMail($user);
+//});
