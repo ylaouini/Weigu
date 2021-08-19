@@ -12,18 +12,9 @@
     <link href="{{ URL::asset('images/favicon.ico') }}" rel="shortcut icon" type="image/x-icon" />
     <link href="{{ asset('css/datepicker.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
     <style type="text/css">
-        .btn.btn-secondary {
-            color: #444;
-            background-color: #fff;
-        }
-
-        .btn.btn-primary {
-            background-color: #00B8FF;
-            color: #fff;
-            border: none;
-        }
-
         .myheader {
             position: relative;
             background-color: #ffba39;
@@ -61,22 +52,17 @@
     <!-- Begin page content -->
     <div class="about-content paddingtop p-4 d-flex flex-column">
         <h2 class="cover-heading pb-3">Notre mission</h2>
-        <p>Nous voulons changer les choses et nous y croyons vraiment.
-            Nous rêvons d’un monde dans lequel vous pourrez parler de sujets « graves », sans plus avoir peur de passer pour cet ami qui plombe l’ambiance.
-            Nous croyons que le bonheur est le but de la vie, mais nous croyons aussi que la vie n’est pas un long fleuve tranquille : Il existe des moments où on a besoin de parler de sujets profonds.
-            Nous voulons connecter les gens autrement.
+        <p><span class="fontplus">Nous voulons changer les choses et nous y croyons vraiment.</span><br>
+            Nous rêvons d’un monde dans lequel vous pourrez parler de sujets « deep », sans plus avoir peur de passer pour cet(te) ami(e) qui plombe toujours l’ambiance. Nous croyons que le bonheur est le but de toute vie, mais nous croyons aussi que la vie n’est pas un long fleuve tranquille : Il existe des moments où nous éprouvons le besoin de parler de sujets profonds. Quand ces moments viendront, nous voulons que vous puissiez toujours trouver des personnes bienveillantes avec qui vous pourrez parler, sans vous sentir jugés.
         </p>
         <h2 class="cover-heading pb-3">C'est quoi Weigu ?</h2>
         <p>
-            Weigu est une plateforme de discussion qui fonctionne sur la base de questions-réponses anonymes.
+            <span class="fontplus">Weigu est une plateforme de discussion qui fonctionne sur la base de questions-réponses anonymes.</span>
             Nous avons pensé notre algorithme de mise en relation afin que chacune de vos questions puisse toujours trouver une réponse.
         </p>
         <h2 class="cover-heading pb-3">Contact </h2>
         <p>
-            Vous n'avez obtenu aucune réponse à l'une de vos questions ?
-            Des remarques ou des plaintes à nous adresser ? Vous souhaitez juste dire bonjour 😊 ?
-            Ecrivez-nous à hello@weigu-app.com
-$        </p>
+            Vous n'avez obtenu aucune réponse à l'une de vos questions ? Des remarques ou des plaintes à nous adresser ? Vous souhaitez juste dire bonjour 😊 ? Ecrivez-nous à hello@weigu-app.com</p>
     </div>
 
 
