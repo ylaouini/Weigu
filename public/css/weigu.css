@@ -29734,6 +29734,15 @@ span.fontplus {
     padding: 10px;
     width: 100%;
 }
+.three-dots {
+    color: #fff;
+    position: absolute;
+    right: -5px;
+    top: 5px;
+    width: 30px;
+    height: 30px;
+}
+
 @media screen and (min-width: 768px) {
     nav.navbar {
         padding: 22px 20px;

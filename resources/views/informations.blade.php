@@ -93,6 +93,7 @@
     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
         @csrf
     </form>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
         $(".burger-menu").click(function() { //use a class, since your ID gets mangled
