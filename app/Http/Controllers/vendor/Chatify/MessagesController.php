@@ -562,8 +562,8 @@ class MessagesController extends Controller
      * @return Collection
      */
     public function fetchMessagesQuery($user_id){
-        return Message::where('from_id',Auth::user()->id)->where('to_id',$user_id)
-            ->orWhere('from_id',$user_id)->where('to_id',Auth::user()->id);
+        return Message::where('from_id',Auth::user()->id)->where('to_id',$user_id)->where('show',true)
+            ->orWhere('from_id',$user_id)->where('to_id',Auth::user()->id)->where('show',true);
     }
 
 

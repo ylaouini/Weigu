@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Http\Controllers\ScheduledMessage;
+use App\Http\Controllers\ScheduleHideMessage;
 use App\Http\Controllers\ScheduleUnreadMessage;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -31,6 +32,7 @@ class Kernel extends ConsoleKernel
 
         $schedule->call(new ScheduledMessage())->everyMinute();
         $schedule->call(new ScheduleUnreadMessage())->everyTwoHours();
+        $schedule->call(new ScheduleHideMessage())->everyMinute();
 //        $schedule->call(new NotRespondedMessageController())->everyMinute();
     }
 
