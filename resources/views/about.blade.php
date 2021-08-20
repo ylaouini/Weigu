@@ -65,7 +65,7 @@
             Vous n'avez obtenu aucune réponse à l'une de vos questions ? Des remarques ou des plaintes à nous adresser ? Vous souhaitez juste dire bonjour 😊 ? Ecrivez-nous à hello@weigu-app.com</p>
     </div>
 
-
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
     <footer class="footer" style="font-size: smaller;">
         @yield('footer', view('partials._footer'))

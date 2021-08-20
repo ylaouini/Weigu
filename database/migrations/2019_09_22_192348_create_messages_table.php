@@ -23,6 +23,7 @@ class CreateMessagesTable extends Migration
             $table->string('attachment')->nullable();
             $table->boolean('seen')->default(false);
             $table->boolean('email_sent')->default(false);
+            $table->boolean('show')->default(true);
             $table->timestamps();
 
             $table->primary('id');

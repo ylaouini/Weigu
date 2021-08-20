@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <style type="text/css">
-
         .myheader {
             position: relative;
             background-color: #ffba39;
@@ -50,14 +49,22 @@
         </nav>
     </header>
     <!-- Begin page content -->
-    <div class="about-content paddingtop p-4 d-flex flex-column">
+    <div class="about-content paddingtop center hideitdesktop p-4 d-flex flex-column">
         <h2 class="cover-heading pb-3">Comment fonctionne l'algorithme de mise en relation ?</h2>
         <p> <span class="fontplus">Le but de l'algorithme de mise en relation est de maximiser la probabilité que chacune de vos
-            questions trouve une réponse.</span><br />Pour celà, l’algorithme envoie votre message à 15 utilisateurs aléatoires, et
-            cela toutes les 12 heures jusqu’à ce que vous finissez par obtenir une première réponse. Notre base de donnée
-            contient actuellement quelques centaines d'utilisateurs, et ce chiffre ne cesse d'augmenter (nous finirons bien
-            par vous trouver quelqu'un qui partage vos questionnements 😉).
+                questions trouve une réponse.</span><br />Pour celà, notre algorithme d'intelligence artificielle envoie votre message aux utilisateurs les plus suscèptibles d'être intéressés par la sujet de votre question et donc les plus suceptibles de votre répondre. Notre base de donnée contient actuellement quelques centaines d'utilisateurs, et ce chiffre ne cesse d'augmenter (nous finirons bien par vous trouver quelqu'un qui partage vos questionnements 😉).
         </p>
+    </div>
+    <div class="hideitmobile about-content p-0 paddingtop p-4 d-flex flex-row" style="width: 80%;">
+        <div class="col-md-6 d-flex">
+            <h2 class="cover-heading centring pb-3">Comment fonctionne l'algorithme de mise en relation ?</h2>
+        </div>
+        <div class="col-md-6 d-flex">
+            <p class="centring">><span class="fontplus">Le but de l'algorithme de mise en relation est de maximiser la probabilité que chacune de vos
+                    questions trouve une réponse.</span>
+                Pour celà, notre algorithme d'intelligence artificielle envoie votre message aux utilisateurs les plus suscèptibles d'être intéressés par la sujet de votre question et donc les plus suceptibles de votre répondre. Notre base de donnée contient actuellement quelques centaines d'utilisateurs, et ce chiffre ne cesse d'augmenter (nous finirons bien par vous trouver quelqu'un qui partage vos questionnements 😉).
+            </p>
+        </div>
     </div>
     <footer class="footer" style="font-size: smaller;">
         @yield('footer', view('partials._footer'))
@@ -65,6 +72,7 @@
     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
         @csrf
     </form>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
         $(".burger-menu").click(function() { //use a class, since your ID gets mangled
