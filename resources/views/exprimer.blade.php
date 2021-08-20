@@ -195,7 +195,7 @@
     Pusher.logToConsole = true;
 
     //var pusher = new Pusher('610ae87cdd570ec71c9c', {
-    var pusher = new Pusher('610ae87cdd570ec71c9c', {
+    var pusher = new Pusher('2f587c587f854d17aeed', {
         cluster: 'eu'
     });
     var current_user_id = {{ Auth::id() }};
