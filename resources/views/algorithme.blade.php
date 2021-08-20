@@ -53,10 +53,7 @@
     <div class="about-content paddingtop p-4 d-flex flex-column">
         <h2 class="cover-heading pb-3">Comment fonctionne l'algorithme de mise en relation ?</h2>
         <p> <span class="fontplus">Le but de l'algorithme de mise en relation est de maximiser la probabilité que chacune de vos
-            questions trouve une réponse.</span><br />Pour celà, l’algorithme envoie votre message à 15 utilisateurs aléatoires, et
-            cela toutes les 12 heures jusqu’à ce que vous finissez par obtenir une première réponse. Notre base de donnée
-            contient actuellement quelques centaines d'utilisateurs, et ce chiffre ne cesse d'augmenter (nous finirons bien
-            par vous trouver quelqu'un qui partage vos questionnements 😉).
+            questions trouve une réponse.</span><br />Pour celà, notre algorithme d'intelligence artificielle envoie votre message aux utilisateurs les plus suscèptibles d'être intéressés par la sujet de votre question et donc les plus suceptibles de votre répondre. Notre base de donnée contient actuellement quelques centaines d'utilisateurs, et ce chiffre ne cesse d'augmenter (nous finirons bien par vous trouver quelqu'un qui partage vos questionnements 😉).
         </p>
     </div>
     <footer class="footer" style="font-size: smaller;">
