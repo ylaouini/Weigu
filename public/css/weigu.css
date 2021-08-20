@@ -29742,7 +29742,9 @@ span.fontplus {
     width: 30px;
     height: 30px;
 }
-
+.centring {
+    align-self: center;
+}
 @media screen and (min-width: 768px) {
     nav.navbar {
         padding: 22px 20px;
