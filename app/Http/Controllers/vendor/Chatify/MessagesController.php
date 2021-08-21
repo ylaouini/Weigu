@@ -287,8 +287,8 @@ class MessagesController extends Controller
                 ->orOn('ch_messages.to_id', '=', 'users.id');
         })
             ->where(function ($q) {
-                $q->where('ch_messages.from_id', Auth::user()->id)->where('broadcast_message_id',null)
-                    ->orWhere('ch_messages.to_id', Auth::user()->id);
+                $q->where('ch_messages.from_id', Auth::user()->id)->where('broadcast_message_id',null)->where('show',true)
+                    ->orWhere('ch_messages.to_id', Auth::user()->id)->where('show',true);
             })
             ->orderBy('ch_messages.created_at', 'desc')
             ->get()
