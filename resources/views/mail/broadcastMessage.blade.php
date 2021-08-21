@@ -1,7 +1,7 @@
 @component('mail::message')
 # Salut {{$name}}
 
-Vous avez reçu un nouvelle question de {{$sender}}
+Tu as reçu un nouvelle question de {{$sender}}
 
 <div style="border-left-style: dotted;
 border-left: thick green;
