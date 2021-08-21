@@ -1,7 +1,7 @@
 @component('mail::message')
 # Salut
 
-Voici votre code secret de connexion qui est valable pour les 15 prochaines minutes
+Voici ton code secret de connexion qui est valable pour les 15 prochaines minutes
 
 <div style="border-left-style: dotted;
     background-color: #f9f9f9;
