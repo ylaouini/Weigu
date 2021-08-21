@@ -60,6 +60,7 @@ Route::get('/login/magic/{user}',[MagicLinkController::class,'confirm'])->name('
 Route::view('/about', 'about');
 Route::view('/algorithme', 'algorithme');
 Route::view('/informations', 'informations')->name('informations');
+Route::view('/more-information', 'moreInfo');
 
 //Route::get('/notification', function () {
 //    $user = \App\Models\User::find(2);

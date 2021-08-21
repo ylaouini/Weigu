@@ -54,10 +54,10 @@
 
         <div class="setting-section">
           <h2 class="setingtitle">Others</h2>
-          <a href="/privacy" class="setting-button">
+          <a href="{{route('informations')}}" class="setting-button">
             <h2>Privacy Policy</h2><i class="bi bi-chevron-right"></i>
           </a>
-          <a href="/terms-and-conditions" class="setting-button brdt">
+          <a href="{{route('informations')}}" class="setting-button brdt">
             <h2>Terms & Conditions</h2><i class="bi bi-chevron-right"></i>
           </a>
           <div class="setting-button logout-button brdt">

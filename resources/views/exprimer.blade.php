@@ -8,6 +8,7 @@
     <link href="{{ asset('css/weigu.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ URL::asset('css/animate.css') }}" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/wow/0.1.12/wow.min.js"></script>
+    <link href="{{ URL::asset('images/favicon.ico') }}" rel="shortcut icon" type="image/x-icon" />
 
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -28,7 +29,7 @@
                     <p class="parag">
                         Pose tes questions, anonymement à toute la communauté
                         <br>
-                        <a href="#">en savoir plus</a>
+                        <a href="/more-information">en savoir plus</a>
                     </p>
                 </div>
                 <div class="d-flex flex-row">
