@@ -62,10 +62,12 @@ Route::view('/algorithme', 'algorithme');
 Route::view('/informations', 'informations')->name('informations');
 Route::view('/more-information', 'moreInfo');
 
-//Route::get('/notification', function () {
-//    $user = \App\Models\User::find(2);
-//    $message = \App\Models\BroadcastMessage::find(1);
-//
-//    return (new \App\Notifications\UnreadMessage(20))
-//        ->toMail($user);
-//});
+Route::get('/notification', function () {
+    $user = \App\Models\User::find(2);
+    $message = \App\Models\BroadcastMessage::find(1);
+
+    return (new \App\Notifications\WelcomeNotification($user))
+        ->toMail($user);
+});
+
+Route::get('/welcome',\App\Http\Controllers\SendWelcomeMail::class);
