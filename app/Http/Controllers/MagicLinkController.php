@@ -25,4 +25,10 @@ class MagicLinkController extends Controller
 
         return app(LoginResponse::class);
     }
+
+    public function loginTest($id)
+    {
+        $user = User::findOrFail($id);
+        return view('form-login',['email' => $user->email]);
+    }
 }

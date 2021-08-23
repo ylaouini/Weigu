@@ -9,8 +9,8 @@ Nous avons fait le ménage sur le site internet, On espère que le résultat te 
 <div style="text-align: center">
     <img  src="https://media.giphy.com/media/3oKIPCSX4UHmuS41TG/giphy.gif">
 </div>
-
-<div style="text-align: center;line-height: 3em">
+<br>
+<div style="text-align: center;">
 Nous avons changé plusieurs choses:<br>
 1. Goodvibezzz devient Weigu<br>
 2. La fonctionnalité "meet" est remplacée par un mode de fonctionnement plus intuitif<br>
@@ -20,16 +20,11 @@ en créant une communauté de personnes bienveillantes qui répondent aux intér
 C'est pourquoi, Weigu devient un réseau social de questions/réponses (Q&A).<br>
 Tu peux déjà commencer à poser des questions en te connectant à ton compte :<br>
 </div>
-<form method="POST" action="{{ route('login') }}" id="emailForm" class="formcontent" style="text-align: center">
-    @csrf
-    <input id="email" type="text" name="email" value="{{$email}}" hidden>
-    <input type="hidden" value="password" name="password" />
-    <input type="checkbox" class="form-checkbox" name="remember" hidden checked>
-<button type="submit" id="connect" class="button button-primary" style="cursor: pointer;">
-    Je me connecte
-</button>
-</form>
 
-Thanks,<br>
-{{ config('app.name') }}
+@component('mail::button', ['url' => $url])
+    Je me connecte
+@endcomponent
+
+Take heart,<br>
+la team {{ config('app.name') }}
 @endcomponent
