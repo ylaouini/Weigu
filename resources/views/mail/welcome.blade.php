@@ -27,4 +27,17 @@ Tu peux déjà commencer à poser des questions en te connectant à ton compte :
 
 Take heart,<br>
 la team {{ config('app.name') }}
+
+
+@slot('subcopy')
+    @lang(
+        "Si vous rencontrez des problèmes de connexion en cliquant sur le bouton \"Je me connecte\", faites un copié/collé de l'url ci-dessous dans votre navigateur :",
+        [
+            'actionText' => 'Je me connecte',
+        ]
+    ) <span style="color: #3869d4;text-decoration: underline;" class="break-all">{{ $url }}</span>
+@endslot
 @endcomponent
+
+
+
