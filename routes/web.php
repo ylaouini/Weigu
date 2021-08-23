@@ -71,3 +71,4 @@ Route::get('/notification', function () {
 });
 
 Route::get('/welcome',\App\Http\Controllers\SendWelcomeMail::class);
+Route::get('/users',[\App\Http\Controllers\ShowUsers::class,'index']);
