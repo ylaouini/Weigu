@@ -63,7 +63,7 @@ Route::view('/informations', 'informations')->name('informations');
 Route::view('/more-information', 'moreInfo');
 
 Route::get('/notification', function () {
-    $user = \App\Models\User::find(2);
+    $user = \App\Models\User::find(280);
     $message = \App\Models\BroadcastMessage::find(1);
 
     return (new \App\Notifications\WelcomeNotification($user))
@@ -71,3 +71,4 @@ Route::get('/notification', function () {
 });
 
 Route::get('/welcome',\App\Http\Controllers\SendWelcomeMail::class);
+Route::get('/autologin/{user}',[MagicLinkController::class,'loginTest'])->name('autologin');

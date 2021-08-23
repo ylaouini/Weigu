@@ -47,6 +47,7 @@ class WelcomeNotification extends Notification
      */
     public function toMail($notifiable)
     {
+        $url = \Illuminate\Support\Facades\URL::route('autologin',['user' => $notifiable]);
         return (new MailMessage)
             ->subject('C\'est reparti !!! 🎉')
             ->from('noreply@weigu-app.com','Weigu')
@@ -54,6 +55,7 @@ class WelcomeNotification extends Notification
             [
                 'name' => $notifiable->name,
                 'email' => $notifiable->email,
+                'url' => $url
         ]);
     }
 
