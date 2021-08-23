@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\BroadcastMessage;
 use App\Models\User;
+use Database\Factories\BroadcastMessageFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,8 +17,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            UsersSeed::class
+            UsersSeed::class,
         ]);
+        BroadcastMessage::factory(200)->create();
         // \App\Models\User::factory(10)->create();
     }
 }
