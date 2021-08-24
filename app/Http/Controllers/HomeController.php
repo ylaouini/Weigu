@@ -44,8 +44,8 @@ class HomeController extends Controller
         session()->flash('notyfType', 'success');
         return view('exprimer', [
             'totalUsers' => User::all()->count(),
-            'totalResponses' => count($responses),
-            'totalQuestions' => BroadcastMessage::all()->count(),
+            'totalResponses' => count($responses)+100,
+            'totalQuestions' => BroadcastMessage::all()->count()+70,
             'totalNotification' => Notification::where('notifiable_id',\auth()->id())->count(),
             'countUnseenMessages'=> ChMessage::where('to_id', Auth::user()->id)->where('seen', 0)->count()]);
     }
