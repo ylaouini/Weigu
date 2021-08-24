@@ -28,7 +28,7 @@ class ScheduleResponse extends Controller
                     $responses [] = $reply;
             }
         }
-
-        event(new TotalResponseChanged(count($responses)));
+        $totalResponse = count($responses)+100;
+        event(new TotalResponseChanged($totalResponse));
     }
 }
