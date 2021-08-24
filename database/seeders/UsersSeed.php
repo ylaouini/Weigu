@@ -17,6 +17,7 @@ class UsersSeed extends Seeder
     public function run()
     {
         User::create(['name' => 'Steve', 'email' => 'stevykana21@gmail.com', 'password' => Hash::make('password'), 'gender' => '1', 'birth_date' => Carbon::parse('10/21/1993')]);
+        User::create(['name' => 'Yassine', 'email' => 'laouini.info@gmail.com', 'password' => Hash::make('password'), 'gender' => '1', 'birth_date' => Carbon::parse('10/22/1992')]);
         User::create(['name' => 'Hamza', 'email' => 'farajihamza18@gmail.com', 'password' => Hash::make('password'), 'gender' => '0', 'birth_date' => Carbon::parse('6/17/2008')]);
         User::create(['name' => 'Kevin', 'email' => 'stevykana@yahoo.fr', 'password' => Hash::make('password'), 'gender' => '1', 'birth_date' => Carbon::parse('10/21/1993')]);
         User::create(['name' => 'Rafael', 'email' => 'elchris2035@gmail.com', 'password' => Hash::make('password'), 'gender' => '1', 'birth_date' => Carbon::parse('7/17/1992')]);

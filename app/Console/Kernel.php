@@ -34,7 +34,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(new ScheduledMessage())->everyMinute();
         $schedule->call(new ScheduleUnreadMessage())->everyTwoHours();
         $schedule->call(new ScheduleHideMessage())->everyMinute();
-        $schedule->call(new ScheduleResponse())->everyFiveMinutes();
+        $schedule->call(new ScheduleResponse())->everyMinute();
 //        $schedule->call(new NotRespondedMessageController())->everyMinute();
     }
 
