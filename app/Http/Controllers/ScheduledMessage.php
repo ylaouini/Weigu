@@ -57,8 +57,7 @@ class ScheduledMessage extends Controller
                  */
                 $message->status = 0;
                 $message->update();
-                $totalResponses = BroadcastMessage::where('status','0')->count();
-                event(new TotalResponseChanged($totalResponses));
+
             }
         }
 
