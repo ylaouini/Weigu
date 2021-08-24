@@ -65,6 +65,12 @@
               <h2>Déconnexion</h2>
             </a>
           </div>
+
+            <div class="setting-button logout-button brdt">
+                <a href="{{route('delete.user')}}">
+                    <h2 style="color: #d6d7d7">Supprimer mon compte</h2>
+                </a>
+            </div>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf
           </form>

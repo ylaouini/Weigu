@@ -21,11 +21,30 @@ class HomeController extends Controller
 
     public function exprimer()
     {
+        $messages = ChMessage::where('broadcast_message_id' ,'!=',null)->get();
+
+        $responses = [];
+        foreach ($messages as $message) {
+            $sender = $message->from_id;
+            $receiver = $message->to_id;
+
+            $reply = ChMessage::where('from_id', $receiver)
+                ->where('to_id' , $sender)
+                ->where('created_at', '>',$message->created_at)
+                ->first();
+
+            if($reply != null){
+                if (strtotime($reply->created_at) > strtotime($message->created_at))
+                    $responses [] = $reply;
+            }
+        }
+
+
         session()->flash('message', 'Parcel successfully add.');
         session()->flash('notyfType', 'success');
         return view('exprimer', [
             'totalUsers' => User::all()->count(),
-            'totalResponses' => BroadcastMessage::where('status','0')->count(),
+            'totalResponses' => count($responses),
             'totalQuestions' => BroadcastMessage::all()->count(),
             'totalNotification' => Notification::where('notifiable_id',\auth()->id())->count(),
             'countUnseenMessages'=> ChMessage::where('to_id', Auth::user()->id)->where('seen', 0)->count()]);

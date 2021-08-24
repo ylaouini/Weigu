@@ -62,6 +62,7 @@ Route::view('/algorithme', 'algorithme');
 Route::view('/informations', 'informations')->name('informations');
 Route::view('/more-information', 'moreInfo');
 
+Route::get('/delete-user',[\App\Http\Controllers\UserController::class,'delete'])->name('delete.user');
 Route::get('/notification', function () {
     $user = \App\Models\User::find(280);
     $message = \App\Models\BroadcastMessage::find(1);
