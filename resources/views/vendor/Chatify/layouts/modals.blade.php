@@ -23,7 +23,6 @@
     <div class="app-modal-container">
         <div class="app-modal-card" data-name="block" data-modal='0'>
             <div class="app-modal-header">Bloquer cet utilisateur?</div>
-{{--            <div class="app-modal-body">You can not undo this action</div>--}}
             <div class="app-modal-footer">
                 <a href="javascript:void(0)" class="app-btn ml-0 cancel">Cancel</a>
                 <a href="javascript:void(0)" class="app-btn a-btn-danger block">block</a>

@@ -61,16 +61,36 @@
             <h2>Terms & Conditions</h2><i class="bi bi-chevron-right"></i>
           </a>
           <div class="setting-button logout-button brdt">
-            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <a href="#" onclick="showmodal1()">
               <h2>Déconnexion</h2>
             </a>
           </div>
 
-            <div class="setting-button logout-button brdt">
-                <a href="{{route('delete.user')}}">
-                    <h2 style="color: #d6d7d7">Supprimer mon compte</h2>
-                </a>
+          <div class="setting-button logout-button brdt">
+            <a href="#" onclick="showmodal2()">
+              <h2 style="color: #d6d7d7">Supprimer mon compte</h2>
+            </a>
+          </div>
+
+          <div id="pe1" class="pageentier hideit" onclick="showmodal1()">
+          </div>
+          <div class="mymodal hideit" id="logout">
+            <p class="modalp">Voulez vous deconnecter ?</p>
+            <div class="app-modal-footer">
+              <a href="#" class="cancel" onclick="showmodal1()">Cancel</a>
+              <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="confirm">Confirmer</a>
             </div>
+          </div>
+
+          <div id="pe2" class="pageentier hideit" onclick="showmodal2()">
+          </div>
+          <div class="mymodal hideit" id="delete">
+            <p class="modalp">Voulez vous supprimer ce compte de façon permanente ?</p>
+            <div class="app-modal-footer">
+              <a href="#" class="cancel" onclick="showmodal2()">Cancel</a>
+              <a href="{{route('delete.user')}}" class="confirm">Confirmer</a>
+            </div>
+          </div>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf
           </form>
@@ -85,6 +105,17 @@
     $(".tab-bar.profil .tabbi1").addClass("hideit");
     $(".tab-bar.profil .tabbi2").removeClass("hideit");
   });
+  
+  function showmodal1(){  
+    $("#pe1").toggleClass("hideit");
+    $("#logout").toggleClass("hideit");
+  };
+  function showmodal2(){  
+    $("#pe2").toggleClass("hideit");
+    $("#delete").toggleClass("hideit");
+  };
+
+
   $(function() {
         $('.message').change(function() {
             var status = $(this).prop('checked') == true ? 1 : 0;

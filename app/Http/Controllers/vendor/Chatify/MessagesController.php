@@ -296,7 +296,7 @@ class MessagesController extends Controller
 
 
 
-        $contacts = '<p class="message-hint center-el"><span>Your contact list is empty</span></p>';
+        $contacts = '<p class="message-hint center-el"><span>Vos discussions s’afficheront ici</span></p>';
         $users = $users->where('id', '!=', Auth::user()->id);
 
         foreach ( Auth::user()->BlockedUser()->get() as $blockedUser){
