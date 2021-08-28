@@ -24,7 +24,7 @@ class ScheduledMessage extends Controller
     public function __invoke(Request $request)
     {
         $messages = $this->getActiveMessages();
-        $everyMinutes = 720;
+        $everyMinutes = 180;
 
         foreach ($messages as $message) {
             $twelveHoursPassed = $this->sendNow($message, $everyMinutes);
@@ -49,7 +49,6 @@ class ScheduledMessage extends Controller
 
 //                        Mail::to($receiver)->send(new ScheduledBroadcastMessage($receiver, $sender->name, $message));
                     }
-
                 }
             } elseif ($gotReply) {
                 /**
