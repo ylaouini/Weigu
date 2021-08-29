@@ -36,6 +36,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/settingsChangeQuestion',[\App\Http\Controllers\SettingsController::class,'changeStatusNotifictionQuestion']);
     Route::post('/exprimer/send', [BroadcastMessageController::class, 'insertRecord'])->name('dashboard.exprimer.add');
 
+    Route::get('/fil-questions',[\App\Http\Controllers\NewsQuestion::class,'index'])->name('newsQuestion');
+    Route::get('/send-question/{question}',[\App\Http\Controllers\NewsQuestion::class,'sendQuestion'])->name('sendQuestion');
+
     Route::resource('change-password', \App\Http\Controllers\PasswordController::class);
     Route::view('/preferences', 'preferences')->name('dashboard.settings.preferences');
 
