@@ -28559,14 +28559,23 @@ i.pageback {
     color: #808080;
     padding: 18px 10px;
 }
-
+h2.mylogo {
+    font-family: 'Just Me Again Down Here';
+    font-size: 2.5rem;
+    margin-top: -20px;
+    color: #00b050;
+}
 .setting-section .setting-button {
     background-color: #fff;
     margin-bottom: 1px;
     float: left;
     width: 100%;
 }
-
+.bi-gear {
+    position: absolute;
+    top: 0;
+    right: 25px;
+}
 .setting-section .setting-button h2 {
     font-size: 1.3rem;
     color: #454545;
@@ -28590,9 +28599,11 @@ i.pageback {
 .notification-section {
     float: left;
     width: 100%;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #ccc;
 }
-
+.withoutborder{
+    border:none!important;
+}
 .notification-section .notification-sender {
     width: 100%;
     float: left;
@@ -28600,21 +28611,33 @@ i.pageback {
 
 .notification-section img {
     border-radius: 50%;
-    width: 18%;
+    width: 10%;
     max-width: 75px;
     float: left;
 }
 
 .notification-section .notification-content {
     padding-left: 10px;
-    width: 80%;
+    width: 90%;
     float: left;
 }
-
+.myicons {
+    float: right;
+    padding: 5px;
+    font-size: 1.5rem;
+    width: 10%;
+}
+.myicons i{
+    color: #454545;
+}
 .notification-section h5 {
     font-size: 1rem;
-    width: 60%;
+    padding: 6px 10px;
+    width: 40%;
     float: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .notification-section p {
@@ -28624,15 +28647,22 @@ i.pageback {
 }
 
 .notification-section p.time {
-    float: right;
+    float: left;    
+    padding: 6px 0px;
 }
 
-.notification-section p.notification {
+p.notification.msg {
+    color: #000000;
+    font-weight: 900;
+    margin-top: 5px;
+    font-size: 1.1rem;
     float: left;
+    overflow: hidden;
     width: 80%;
     text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 p.notif-parag {
@@ -28773,7 +28803,7 @@ p.notif-parag a span {
 }
 
 .navigatebuttons .navigatebutton {
-    padding: 4px 15px;
+    padding: 4px 25px;
     font-size: 0.9rem;
 }
 
@@ -29194,7 +29224,7 @@ p.anonyme {
 
 .page-middle {
     width: 100%;
-    padding-top: 3.5rem;
+    padding-top: 6rem;
     flex: 0 0 auto;
 }
 
