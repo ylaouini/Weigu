@@ -185,7 +185,8 @@
     // make sure the number of days correspond with the selected month
     function setDays(monthIndex) {
         var optionCount = $('#select-day option').length,
-            daysCount = daysInMonth[monthIndex];
+            daysCount = daysInMonth[monthIndex-1];
+
 
 
         if (optionCount < daysCount) {
