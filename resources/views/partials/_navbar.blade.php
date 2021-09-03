@@ -1,8 +1,8 @@
 <div class="myfooter tab-box">
     <div class="d-flex justify-content-between">
         <div class="tab-bar home">
-            <a href="#"><i class="bi tabbi1 bi-house-door"></i></a>
-            <a href="#"><i class="bi tabbi2 bi-house-door-fill  hideit"></i></a>
+            <a href="{{route('newsQuestion')}}"><i class="bi tabbi1 bi-house-door"></i></a>
+            <a href="{{route('newsQuestion')}}"><i class="bi tabbi2 bi-house-door-fill  hideit"></i></a>
         </div>
         <div class="tab-bar expr">
             <a href="{{ route('dashboard.exprimer') }}"><i class="bi tabbi1 bi-plus-square"></i></a>
