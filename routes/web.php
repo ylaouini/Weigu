@@ -36,7 +36,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/settingsChangeQuestion',[\App\Http\Controllers\SettingsController::class,'changeStatusNotifictionQuestion']);
     Route::post('/exprimer/send', [BroadcastMessageController::class, 'insertRecord'])->name('dashboard.exprimer.add');
 
-    Route::get('/fil-questions',[\App\Http\Controllers\NewsQuestion::class,'index'])->name('newsQuestion');
+    Route::get('/questions',[\App\Http\Controllers\NewsQuestion::class,'index'])->name('newsQuestion');
     Route::get('/send-question/{question}',[\App\Http\Controllers\NewsQuestion::class,'sendQuestion'])->name('sendQuestion');
     #Load more Infinite Scroll in Laravel
     Route::get('/load-more-data-example',[\App\Http\Controllers\NewsQuestion::class,'index']);
