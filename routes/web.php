@@ -38,6 +38,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/fil-questions',[\App\Http\Controllers\NewsQuestion::class,'index'])->name('newsQuestion');
     Route::get('/send-question/{question}',[\App\Http\Controllers\NewsQuestion::class,'sendQuestion'])->name('sendQuestion');
+    #Load more Infinite Scroll in Laravel
+    Route::get('/load-more-data-example',[\App\Http\Controllers\NewsQuestion::class,'index']);
 
     Route::resource('change-password', \App\Http\Controllers\PasswordController::class);
     Route::view('/preferences', 'preferences')->name('dashboard.settings.preferences');
