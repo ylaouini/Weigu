@@ -28565,6 +28565,7 @@ h2.mylogo {
     margin-top: -20px;
     color: #00b050;
 }
+
 .setting-section .setting-button {
     background-color: #fff;
     margin-bottom: 1px;
@@ -28647,7 +28648,7 @@ h2.mylogo {
 }
 
 .notification-section p.time {
-    float: left;    
+    float: left;
     padding: 6px 0px;
 }
 
