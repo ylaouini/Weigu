@@ -12,7 +12,7 @@ class TwitterController extends Controller
 {
     public function loginwithTwitter()
     {
-        return Socialite::driver('twitter')->with(['hd' => 'weigu-app.com'])->redirect();
+        return Socialite::driver('twitter')->redirect();
     }
 
     public function cbTwitter()
