@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UsersSeed::class,
         ]);
-//        BroadcastMessage::factory(70)->create();
+        BroadcastMessage::factory(70)->create();
         // \App\Models\User::factory(10)->create();
     }
 }

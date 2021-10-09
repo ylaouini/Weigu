@@ -260,11 +260,11 @@
         });
     });
 
-    var channel = pusher.subscribe('user-{{ Auth::id() }}');
-    channel.bind('TotalNotificationChanged', function(data) {
-        document.getElementById('notification').innerHTML = JSON.parse(data.totalNotifications);
-        document.getElementById('notificationJavascript').classList.remove('hideit');
-        document.getElementById('notificationServer').classList.add('hideit');
-    });
+    {{--var channel = pusher.subscribe('user-{{ Auth::id() }}');--}}
+    {{--channel.bind('TotalNotificationChanged', function(data) {--}}
+    {{--    document.getElementById('countUnseenMessages').innerHTML = JSON.parse(data.totalNotifications);--}}
+    {{--    // document.getElementById('notificationJavascript').classList.remove('hideit');--}}
+    {{--    // document.getElementById('notificationServer').classList.add('hideit');--}}
+    {{--});--}}
 </script>
 </html>

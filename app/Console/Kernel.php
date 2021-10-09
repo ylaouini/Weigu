@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Http\Controllers\ScheduleChangeName;
 use App\Http\Controllers\ScheduledMessage;
 use App\Http\Controllers\ScheduleHideMessage;
 use App\Http\Controllers\ScheduleResponse;
@@ -35,6 +36,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(new ScheduleUnreadMessage())->everyTwoHours();
         $schedule->call(new ScheduleHideMessage())->everyMinute();
         $schedule->call(new ScheduleResponse())->everyMinute();
+//        $schedule->call(new ScheduleChangeName())->monthly(); //Run the task on the first day of every month at 00:00
 //        $schedule->call(new NotRespondedMessageController())->everyMinute();
     }
 
