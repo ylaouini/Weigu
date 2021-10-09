@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\ChMessage as Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Chatify\Facades\ChatifyMessenger as Chatify;
 
 class BroadcastMessageController extends Controller
 {
@@ -111,14 +112,57 @@ class BroadcastMessageController extends Controller
         $message->save();
 
 //        // fetch message to send it with the response
-//        $messageData = Chatify::fetchMessage($messageID);
+//        $messageData = $this->fetchMessage($messageID);
 //
 //        // send to user using pusher
 //        Chatify::push('private-chatify', 'messaging', [
 //            'from_id' => $broadcastMessage->user_id,
 //            'to_id' => $reciever->id,
-//            'message' => Chatify::messageCard($messageData, 'default')
+//            'message' => $this->messageCard($messageData, 'default')
 //        ]);
     }
+
+//    public function fetchMessage($id){
+//        $attachment = null;
+//        $attachment_type = null;
+//        $attachment_title = null;
+//
+//        $msg = Message::where('id',$id)->first();
+//
+//        if(isset($msg->attachment)){
+//            $attachmentOBJ = json_decode($msg->attachment);
+//            $attachment = $attachmentOBJ->new_name;
+//            $attachment_title = $attachmentOBJ->old_name;
+//
+//            $ext = pathinfo($attachment, PATHINFO_EXTENSION);
+//            $attachment_type = in_array($ext,$this->getAllowedImages()) ? 'image' : 'file';
+//        }
+//
+//        return [
+//            'id' => $msg->id,
+//            'from_id' => $msg->from_id,
+//            'to_id' => $msg->to_id,
+//            'message' => $msg->body,
+//            'attachment' => [$attachment, $attachment_title, $attachment_type],
+//            'time' => $msg->created_at->diffForHumans(),
+//            'fullTime' => $msg->created_at,
+//            'viewType' => ($msg->from_id == Auth::user()->id) ? 'sender' : 'default',
+//            'seen' => $msg->seen,
+//            'broadcast_message_id' => $msg->broadcast_message_id,
+//        ];
+//    }
+
+    /**
+     * Return a message card with the given data.
+     *
+     * @param array $data
+     * @param string $viewType
+     * @return void
+     */
+//    public function messageCard($data, $viewType = null){
+//        $data['viewType'] = ($viewType) ? $viewType : $data['viewType'];
+//        return view('Chatify::layouts.messageCard',$data)->render();
+//    }
+
 
 }

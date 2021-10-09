@@ -36,7 +36,7 @@ class TotalNotificationChanged implements ShouldBroadcast
 
     public function broadcastOn()
     {
-        return new PrivateChannel('user-'.$this->user->id);
+        return new PrivateChannel( 'App.Models.User.'.$this->user->id);
 //        return new Channel('count-changed');
     }
 

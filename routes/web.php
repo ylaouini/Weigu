@@ -6,6 +6,7 @@ use App\Http\Controllers\MagicLinkController;
 use App\Http\Controllers\PassPhraseController;
 use App\Http\Controllers\vendor\Chatify\MessagesController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +27,24 @@ Route::get('/', function () {
 //    return view('dashboard');
 //})->name('dashboard');
 
+// Twitter log in
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('twitter')->redirect();
+});
+
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('twitter')->user();
+
+    // $user->token
+});
+
 Route::post('/check-email', [\App\Actions\Fortify\AuthenticateLoginAttempt::class, 'checkEmail'])->name('check-email');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+
+    Route::view('/profile','profile');
+
     Route::get('/exprimer', [HomeController::class, 'exprimer'])->name('dashboard.exprimer');
 //    Route::view('/settings', 'settings')->name('dashboard.settings');
     Route::get('/settings',[\App\Http\Controllers\SettingsController::class,'index'])->name('dashboard.settings');
