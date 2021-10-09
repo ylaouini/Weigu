@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -39,7 +40,7 @@ class TwitterController extends Controller
 
                 Auth::login($gitUser);
 
-                return redirect('/home');
+                return redirect()->route('dashboard.exprimer');
             }
 
         } catch (\Exception $e) {
