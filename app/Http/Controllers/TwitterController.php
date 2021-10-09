@@ -19,7 +19,7 @@ class TwitterController extends Controller
     {
         try {
 
-            $user = Socialite::driver('twitter')->user();
+            $user = Socialite::driver('twitter')->stateless()->user();
 
             dd($user);
 
