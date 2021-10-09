@@ -30,9 +30,9 @@ Route::get('/', function () {
 // Twitter log in
 Route::get('/auth/redirect', function () {
     return Socialite::driver('twitter')->redirect();
-});
+})->name('login.twitter');
 
-Route::get('/auth/callback', function () {
+Route::get('auth/callback/twitter', function () {
     $user = Socialite::driver('twitter')->user();
 
     // $user->token
