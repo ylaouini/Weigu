@@ -4,6 +4,7 @@ use App\Http\Controllers\BroadcastMessageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MagicLinkController;
 use App\Http\Controllers\PassPhraseController;
+use App\Http\Controllers\TwitterController;
 use App\Http\Controllers\vendor\Chatify\MessagesController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
@@ -28,15 +29,19 @@ Route::get('/', function () {
 //})->name('dashboard');
 
 // Twitter log in
-Route::get('/auth/redirect', function () {
-    return Socialite::driver('twitter')->redirect();
-})->name('login.twitter');
 
-Route::get('auth/callback/twitter', function () {
-    $user = Socialite::driver('twitter')->user();
-
-    // $user->token
-});
+Route::get('auth/twitter', [TwitterController::class, 'loginwithTwitter']);
+Route::get('auth/callback/twitter', [TwitterController::class, 'cbTwitter']);
+//Route::get('/auth/redirect', function () {
+//    return Socialite::driver('twitter')->redirect();
+//})->name('login.twitter');
+//
+//Route::get('auth/callback/twitter', function () {
+//    $user = Socialite::driver('twitter')->user();
+//
+//    dd($user);
+//    // $user->token
+//});
 
 Route::post('/check-email', [\App\Actions\Fortify\AuthenticateLoginAttempt::class, 'checkEmail'])->name('check-email');
 
