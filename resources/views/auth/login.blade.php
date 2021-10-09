@@ -81,9 +81,9 @@
                     Terminer
                 </button>
             </form>
-            <a href="{{route('login.twitter')}}" type="submit" id="connect" class="btn btn-primary mt-4">
-                Connexion with Twitter
-            </a>
+{{--            <a href="{{route('login.twitter')}}" type="submit" id="connect" class="btn btn-primary mt-4">--}}
+{{--                Connexion with Twitter--}}
+{{--            </a>--}}
             <footer class="footer" style="font-size: smaller;">
                 @yield('footer', view('partials._footer'))
             </footer>
