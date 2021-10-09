@@ -28,7 +28,9 @@ class User extends Authenticatable
         'email',
         'password',
         'birth_date',
-        'gender'
+        'gender',
+        'twitter_id',
+        'oauth_type'
     ];
 
     /**

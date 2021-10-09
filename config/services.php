@@ -33,6 +33,6 @@ return [
     'twitter' => [
         'client_id' => env('TWITTER_CLIENT_ID'),
         'client_secret' => env('TWITTER_CLIENT_SECRET'),
-        'redirect' => 'http://example.com/callback-url',
+        'redirect' => 'https://weigu-app.com/auth/callback/twitter',
     ],
 ];
