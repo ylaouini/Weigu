@@ -30,17 +30,17 @@ Route::get('/', function () {
 
 // Twitter log in
 
-//Route::get('auth/twitter', [TwitterController::class, 'loginwithTwitter'])->name('login.twitter');
-//Route::get('auth/callback/twitter', [TwitterController::class, 'cbTwitter']);
-Route::get('/auth/redirect', function () {
-    return Socialite::driver('twitter')->redirect();
-})->name('login.twitter');
-
-Route::get('auth/callback/twitter', function () {
-    $user = Socialite::driver('twitter')->user();
-    dd($user);
-    // $user->token
-});
+Route::get('auth/twitter', [TwitterController::class, 'loginwithTwitter'])->name('login.twitter');
+Route::get('auth/callback/twitter', [TwitterController::class, 'cbTwitter']);
+//Route::get('/auth/redirect', function () {
+//    return Socialite::driver('twitter')->redirect();
+//})->name('login.twitter');
+//
+//Route::get('auth/callback/twitter', function () {
+//    $user = Socialite::driver('twitter')->user();
+//    dd($user);
+//    // $user->token
+//});
 
 Route::post('/check-email', [\App\Actions\Fortify\AuthenticateLoginAttempt::class, 'checkEmail'])->name('check-email');
 
