@@ -30,7 +30,7 @@ Route::get('/', function () {
 
 // Twitter log in
 
-Route::get('auth/twitter', [TwitterController::class, 'loginwithTwitter']);
+Route::get('auth/twitter', [TwitterController::class, 'loginwithTwitter'])->name('login.twitter');
 Route::get('auth/callback/twitter', [TwitterController::class, 'cbTwitter']);
 //Route::get('/auth/redirect', function () {
 //    return Socialite::driver('twitter')->redirect();
