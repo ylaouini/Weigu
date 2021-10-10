@@ -20,7 +20,7 @@ class TwitterController extends Controller
         try {
             $user = Socialite::driver('twitter')->user();
 
-            dd(User::find(1)->first());
+//            dd(User::find(1)->first());
 
             dd($user->user);
             $userWhere = User::where('twitter_id', $user->id)->first();
