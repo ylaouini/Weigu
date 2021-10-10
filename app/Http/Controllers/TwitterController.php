@@ -35,7 +35,8 @@ class TwitterController extends Controller
                     'twitter_id'=> $user->id,
                     'profile_background_image_url'=> $user->getAvatar(),
                     'profile_photo_path'=> $user->getAvatar(),
-                    'password' => Hash::make($user->id)
+                    'password' => Hash::make($user->id),
+                    'gender' => 1,
                 ]);
 
                 Auth::login($gitUser);
