@@ -22,7 +22,7 @@ class TwitterController extends Controller
 
             $userWhere = User::where('twitter_id', $user->id)->first();
             $userExist = User::where('email', $user->email)->first();
-            if($userWhere && $userExist){
+            if($userWhere && !$userExist){
 
                 Auth::login($userWhere);
 
