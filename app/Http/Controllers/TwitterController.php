@@ -22,7 +22,7 @@ class TwitterController extends Controller
 
 //            dd(User::find(1)->first());
 
-            dd($user);
+            dd($user->avatar_original);
             $userWhere = User::where('twitter_id', $user->id)->first();
             $userExist = User::where('email', $user->email)->first();
             if($userWhere || $userExist){
