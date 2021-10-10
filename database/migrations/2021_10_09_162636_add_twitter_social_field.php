@@ -15,7 +15,7 @@ class AddTwitterSocialField extends Migration
     {
         Schema::table('users', function ($table) {
             $table->string('twitter_id')->nullable();
-            $table->string('oauth_type')->nullable();
+            $table->string('profile_background_image_url', 2048)->nullable();
         });
     }
 

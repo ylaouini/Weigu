@@ -30,7 +30,7 @@ class User extends Authenticatable
         'birth_date',
         'gender',
         'twitter_id',
-        'oauth_type'
+        'profile_banner_url'
     ];
 
     /**
@@ -75,8 +75,6 @@ class User extends Authenticatable
 
     public function routeNotificationForMail($notification)
     {
-
-
         // Return email address and name...
         return [$this->email => $this->name];
     }

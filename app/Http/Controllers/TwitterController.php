@@ -19,8 +19,7 @@ class TwitterController extends Controller
     {
         try {
             $user = Socialite::driver('twitter')->user();
-            dd($user);
-
+           // dd($user);
             $userWhere = User::where('twitter_id', $user->id)->first();
 
             if($userWhere){
@@ -34,7 +33,8 @@ class TwitterController extends Controller
                     'name' => $user->name,
                     'email' => $user->email,
                     'twitter_id'=> $user->id,
-                    'oauth_type'=> 'twitter',
+                    'profile_banner_url'=> $user->profile_banner_url,
+                    'profile_photo_path'=> $user->getAvatar(),
                     'password' => Hash::make($user->id)
                 ]);
 
