@@ -33,8 +33,8 @@ class TwitterController extends Controller
                     'name' => $user->name,
                     'email' => $user->email,
                     'twitter_id'=> $user->id,
-                    'profile_background_image_url'=> $user->getAvatar(),
-                    'profile_photo_path'=> $user->getAvatar(),
+                    'profile_background_image_url'=> $user->avatar,
+                    'profile_photo_path'=> $user->avatar,
                     'password' => Hash::make($user->id),
                     'gender' => 1,
                 ]);
