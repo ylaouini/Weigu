@@ -19,7 +19,7 @@ class TwitterController extends Controller
     {
         try {
             $user = Socialite::driver('twitter')->user();
-           dd($user->user->profile_banner_url);
+
             $userWhere = User::where('twitter_id', $user->id)->first();
 
             if($userWhere){
@@ -33,7 +33,7 @@ class TwitterController extends Controller
                     'name' => $user->name,
                     'email' => $user->email,
                     'twitter_id'=> $user->id,
-                    'profile_banner_url'=> $user->profile_banner_url,
+                    'profile_banner_url'=> $user->getAvatar(),
                     'profile_photo_path'=> $user->getAvatar(),
                     'password' => Hash::make($user->id)
                 ]);
