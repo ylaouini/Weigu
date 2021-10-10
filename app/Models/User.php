@@ -30,7 +30,8 @@ class User extends Authenticatable
         'birth_date',
         'gender',
         'twitter_id',
-        'profile_banner_url'
+        'profile_background_image_url',
+        'profile_photo_path'
     ];
 
     /**
