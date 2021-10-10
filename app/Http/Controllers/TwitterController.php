@@ -20,7 +20,9 @@ class TwitterController extends Controller
         try {
             $user = Socialite::driver('twitter')->user();
 
-            dd($user->user->profile_image_url);
+            dd(User::find(1));
+
+            dd($user->user);
             $userWhere = User::where('twitter_id', $user->id)->first();
             $userExist = User::where('email', $user->email)->first();
             if($userWhere || $userExist){
