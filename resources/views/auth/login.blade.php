@@ -144,9 +144,9 @@
                         {{-- <button type="button" id="next" class="my-buttons mt-4">--}}
                         {{-- Suivant--}}
                         {{-- </button>--}}
-                        <button type="submit" id="connect" class="my-buttons mt-4">
-                            Connexion
-                        </button>
+{{--                        <button type="submit" id="connect" class="my-buttons mt-4">--}}
+{{--                            Connexion--}}
+{{--                        </button>--}}
                     </form>
                     <x-jet-validation-errors class="mb-4" />
                     {{-- <button class="magic_link hideit" type="submit" id="byMagicLink">--}}
