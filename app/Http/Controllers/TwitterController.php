@@ -18,9 +18,7 @@ class TwitterController extends Controller
     public function cbTwitter()
     {
         try {
-
-            $user = Socialite::driver('twitter')->stateless()->user();
-
+            $user = Socialite::driver('twitter')->user();
             dd($user);
 
             $userWhere = User::where('twitter_id', $user->id)->first();
